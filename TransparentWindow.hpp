@@ -19,6 +19,10 @@ public:
         return dwExStyle | WS_EX_TRANSPARENT;
     }
 
+    static const wchar_t* GetWndCaption() {
+        return L"TransparentWindow";
+    }
+
 private:
     BEGIN_MSG_MAP(TransparentWindow)
         MESSAGE_HANDLER(WM_PAINT, OnPaint)

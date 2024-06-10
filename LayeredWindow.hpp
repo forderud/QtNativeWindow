@@ -15,6 +15,10 @@ public:
     ~LayeredWindow() override {
     }
 
+    static const wchar_t* GetWndCaption() {
+        return L"LayeredWindow";
+    }
+
 private:
     BEGIN_MSG_MAP(LayeredWindow)
         MESSAGE_HANDLER(WM_PAINT, OnPaint)
