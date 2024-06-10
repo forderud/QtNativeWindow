@@ -41,11 +41,12 @@ int main(int argc, char *argv[]) {
 
     QtWindowWithNativeContent win;
 
-    // create native windows
+    // add native window with WS_EX_LAYERED-based transparency
     LayeredWindow lw;
     lw.Create(reinterpret_cast<HWND>(win.winId())); // parent window handle from Qt
     win.AddNativeWindow(lw.m_hWnd); // add to Qt window
 
+    // add native window with WS_EX_TRANSPARENT-based transparency
     TransparentWindow tw;
     tw.Create(reinterpret_cast<HWND>(win.winId())); // parent window handle from Qt
     win.AddNativeWindow(tw.m_hWnd); // add to Qt window
