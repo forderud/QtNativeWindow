@@ -26,14 +26,12 @@ int main(int argc, char *argv[]) {
 
     MyWindow win;
 
-    // create native window
-    HWND parent = reinterpret_cast<HWND>(win.winId());
-
+    // create native windows
     LayeredWindow lw;
-    lw.Create(parent);
+    lw.Create(reinterpret_cast<HWND>(win.winId())); // parent window handle from Qt
 
     TransparentWindow tw;
-    tw.Create(parent);
+    tw.Create(reinterpret_cast<HWND>(win.winId())); // parent window handle from Qt
 
     {
         // embed native widows in Qt window
