@@ -20,3 +20,9 @@ set_property(TARGET MyOleControl PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$
 # and copy the generated files to ${ProjectDir} post-build.
 set(INT_DIR "${CMAKE_CURRENT_BINARY_DIR}/MyOleControl.dir/${CMAKE_CFG_INTDIR}")
 target_include_directories(MyOleControl PRIVATE "${INT_DIR}")
+
+# Register DLL post-build
+add_custom_command(TARGET MyOleControl POST_BUILD
+    COMMAND echo ARGS Registering DLL...
+    COMMAND regsvr32 ARGS /s "$<TARGET_FILE_DIR:MyOleControl>\\$<TARGET_FILE_NAME:MyOleControl>"
+    COMMENT "Register output.")
