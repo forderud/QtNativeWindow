@@ -1,0 +1,26 @@
+// Type library sources
+#include <olectl.h>
+#include <idispids.h>
+
+[uuid(0C31A6C5-DD54-4A5C-8067-3A3F692B877F), version(1.0), control]
+library MfcAppLib {
+    // Primary dispatch interface
+    [uuid(2636F667-54BA-4DFC-8345-919016056346)]
+    dispinterface _DMfcApp {
+        properties:
+        methods:
+    };
+
+    // Event dispatch interface
+    [uuid(5A956D8D-5BE4-4C41-9FC5-530BEDAD8B6E)]
+    dispinterface _DMfcAppEvents {
+        properties:
+            // Event interface has no properties
+        methods:
+    };
+
+    [uuid(45C33494-127D-4AEA-B7EB-63A203D69E8A)]
+    coclass MfcApp {
+        [default] interface _DMfcApp;
+    };
+};
