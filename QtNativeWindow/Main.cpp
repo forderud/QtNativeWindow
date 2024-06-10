@@ -27,9 +27,9 @@ public:
         auto* window = QWindow::fromWinId((WId)nativeHandle);
 
         // re-parent native window
-        auto* container = QWidget::createWindowContainer(window);
+        auto* widget = QWidget::createWindowContainer(window);
 
-        m_layout->addWidget(container);
+        m_layout->addWidget(widget);
     }
 
     void AddOleControl(QString cls) {
