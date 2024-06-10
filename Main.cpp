@@ -39,11 +39,9 @@ int main(int argc, char *argv[]) {
         layout->addWidget(EmbedNativeWindow(lw.m_hWnd));
         layout->addWidget(EmbedNativeWindow(tw.m_hWnd));
 
-        // Set layout in QWidget
-        QWidget* widget = new QWidget;
-        widget->setLayout(layout);
-
-        win.setCentralWidget(widget);
+        QWidget* mainWidget = new QWidget;
+        mainWidget->setLayout(layout);
+        win.setCentralWidget(mainWidget);
     }
     
     win.show();
