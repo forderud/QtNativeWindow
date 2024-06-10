@@ -9,6 +9,23 @@
 
 class MyWindow : public QMainWindow {
 public:
+    MyWindow() {
+        m_layout = new QHBoxLayout;
+
+        QWidget* mainWidget = new QWidget;
+        mainWidget->setLayout(m_layout);
+        setCentralWidget(mainWidget);
+
+        // gradient background to test native window transparency
+        mainWidget->setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))");
+    }
+
+    void Add(QWidget* widget) {
+        m_layout->addWidget(widget);
+    }
+
+private:
+    QHBoxLayout* m_layout = nullptr;
 };
 
 
@@ -33,19 +50,9 @@ int main(int argc, char *argv[]) {
     TransparentWindow tw;
     tw.Create(reinterpret_cast<HWND>(win.winId())); // parent window handle from Qt
 
-    {
-        // embed native widows in Qt window
-        QHBoxLayout* layout = new QHBoxLayout;
-        layout->addWidget(EmbedNativeWindow(lw.m_hWnd));
-        layout->addWidget(EmbedNativeWindow(tw.m_hWnd));
-
-        QWidget* mainWidget = new QWidget;
-        mainWidget->setLayout(layout);
-        win.setCentralWidget(mainWidget);
-
-        // gradient background to test native window transparency
-        mainWidget->setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))");
-    }
+    // embed native widows in Qt window
+    win.Add(EmbedNativeWindow(lw.m_hWnd));
+    win.Add(EmbedNativeWindow(tw.m_hWnd));
 
     win.show();
     return a.exec();
