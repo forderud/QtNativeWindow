@@ -12,6 +12,8 @@ qt_standard_project_setup()
 qt_add_executable(QtForeignWindow
     app.manifest # manifest to unlock Win10 features
     Main.cpp
+    LayeredWindow.hpp
+    TransparentWindow.hpp
 )
 
 target_link_libraries(QtForeignWindow PRIVATE Qt6::Widgets)
