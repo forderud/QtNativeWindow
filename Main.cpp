@@ -8,9 +8,9 @@
 
 
 /** Sample Qt window with native window UI. */
-class QtWindowWithForeigContent : public QMainWindow {
+class QtWindowWithNativeContent : public QMainWindow {
 public:
-    QtWindowWithForeigContent() {
+    QtWindowWithNativeContent() {
         QWidget* mainWidget = new QWidget;
         setCentralWidget(mainWidget);
 
@@ -39,7 +39,7 @@ private:
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
 
-    QtWindowWithForeigContent win;
+    QtWindowWithNativeContent win;
 
     // create native windows
     LayeredWindow lw;
