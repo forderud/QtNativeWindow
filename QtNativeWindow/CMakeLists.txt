@@ -1,4 +1,4 @@
-find_package(Qt6 REQUIRED COMPONENTS Widgets ActiveQt)
+find_package(Qt6 REQUIRED COMPONENTS Widgets AxContainer)
 
 qt_standard_project_setup()
 
@@ -9,7 +9,7 @@ qt_add_executable(QtNativeWindow
     TransparentWindow.hpp
 )
 
-target_link_libraries(QtNativeWindow PRIVATE Qt6::Widgets Qt6::ActiveQt)
+target_link_libraries(QtNativeWindow PRIVATE Qt6::Widgets Qt6::AxContainer)
 
 
 qt_generate_deploy_app_script(
