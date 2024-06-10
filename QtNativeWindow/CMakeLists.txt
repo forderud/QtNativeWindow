@@ -11,9 +11,6 @@ qt_add_executable(QtNativeWindow
 
 target_link_libraries(QtNativeWindow PRIVATE Qt6::Widgets Qt6::ActiveQt)
 
-set_target_properties(QtNativeWindow PROPERTIES
-    WIN32_EXECUTABLE ON # hide console window
-)
 
 qt_generate_deploy_app_script(
     TARGET QtNativeWindow
