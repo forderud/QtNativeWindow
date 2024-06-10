@@ -45,7 +45,7 @@ BOOL CMfcAppCtrl::CMfcAppCtrlFactory::UpdateRegistry(BOOL bRegister) {
     // afxRegApartmentThreading to 0.
 
     if (bRegister) {
-        BOOL ok = AfxOleRegisterControlClass(
+        return AfxOleRegisterControlClass(
             AfxGetInstanceHandle(),
             m_clsid,
             m_lpszProgID,
@@ -55,10 +55,6 @@ BOOL CMfcAppCtrl::CMfcAppCtrlFactory::UpdateRegistry(BOOL bRegister) {
             _dwMfcAppOleMisc,
             LIBID_MfcAppLib,
             1, 0);
-        if (!ok)
-            return 0;
-
-        return ok;
     } else {
         return AfxOleUnregisterClass(m_clsid, m_lpszProgID);
     }
