@@ -53,6 +53,9 @@ int main(int argc, char *argv[]) {
 
     QtWindowWithNativeContent win;
 
+    // add OLE control
+    win.AddOleControl("{45C33494-127D-4AEA-B7EB-63A203D69E8A}"); // MyOleControl
+
     // add native window with WS_EX_LAYERED-based transparency
     LayeredWindow lw;
     lw.Create(reinterpret_cast<HWND>(win.winId())); // parent window handle from Qt
@@ -62,6 +65,8 @@ int main(int argc, char *argv[]) {
     TransparentWindow tw;
     tw.Create(reinterpret_cast<HWND>(win.winId())); // parent window handle from Qt
     win.AddNativeWindow(tw.m_hWnd); // add to Qt window
+
+    win.resize(800, 400);
 
     win.show();
     return a.exec();
