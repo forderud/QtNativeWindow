@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QLayout>
 #include <QMainWindow>
 #include <QWindow>
 #include <QWidget>
@@ -27,12 +28,25 @@ int main(int argc, char *argv[]) {
 
     // create native window
     HWND parent = reinterpret_cast<HWND>(win.winId());
-    LayeredWindow nw;
-    //TransparentWindow nw;
-    nw.Create(parent);
 
-    // embed native widow in Qt window
-    win.setCentralWidget(EmbedNativeWindow(nw.m_hWnd));
+    LayeredWindow lw;
+    lw.Create(parent);
+
+    TransparentWindow tw;
+    tw.Create(parent);
+
+    {
+        // embed native widows in Qt window
+        QHBoxLayout* layout = new QHBoxLayout;
+        layout->addWidget(EmbedNativeWindow(lw.m_hWnd));
+        layout->addWidget(EmbedNativeWindow(tw.m_hWnd));
+
+        // Set layout in QWidget
+        QWidget* widget = new QWidget;
+        widget->setLayout(layout);
+
+        win.setCentralWidget(widget);
+    }
     
     win.show();
     return a.exec();
