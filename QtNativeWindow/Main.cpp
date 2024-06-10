@@ -3,6 +3,7 @@
 #include <QMainWindow>
 #include <QWindow>
 #include <QWidget>
+#include <QAxWidget>
 #include "LayeredWindow.hpp"
 #include "TransparentWindow.hpp"
 
@@ -11,7 +12,7 @@
 class QtWindowWithNativeContent : public QMainWindow {
 public:
     QtWindowWithNativeContent() {
-        QWidget* mainWidget = new QWidget;
+        auto* mainWidget = new QWidget;
         setCentralWidget(mainWidget);
 
         // gradient background to test native window transparency
@@ -23,12 +24,19 @@ public:
 
     void AddNativeWindow(HWND nativeHandle) {
         // wrap native window handle
-        QWindow* window = QWindow::fromWinId((WId)nativeHandle);
+        auto* window = QWindow::fromWinId((WId)nativeHandle);
 
         // re-parent native window
-        QWidget* container = QWidget::createWindowContainer(window);
+        auto* container = QWidget::createWindowContainer(window);
 
         m_layout->addWidget(container);
+    }
+
+    void AddOleControl(QString cls) {
+        auto* widget = new QAxWidget();
+        widget->setControl(cls);
+
+        m_layout->addWidget(widget);
     }
 
     void mousePressEvent(QMouseEvent* evt) override {
