@@ -18,3 +18,9 @@ target_link_libraries(QtForeignWindow PRIVATE Qt6::Widgets)
 set_target_properties(QtForeignWindow PROPERTIES
     WIN32_EXECUTABLE ON # hide console window
 )
+
+qt_generate_deploy_app_script(
+    TARGET QtForeignWindow
+    OUTPUT_SCRIPT deploy_script
+)
+install(SCRIPT ${deploy_script})
