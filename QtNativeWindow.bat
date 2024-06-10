@@ -11,7 +11,7 @@ mkdir out
 cd out
 
 :: Initialize Visual Studio projects
-cmake.exe -A x64  .. || exit /B 1
+cmake.exe -A x64 -DCMAKE_CONFIGURATION_TYPES=Release;Debug .. || exit /B 1
 
 :: Open solution
 start QtNativeWindow.sln
