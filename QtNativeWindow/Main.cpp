@@ -31,6 +31,10 @@ public:
         m_layout->addWidget(container);
     }
 
+    void mousePressEvent(QMouseEvent* evt) override {
+        wprintf(L"QtNativeWindow mousePressEvent\n");
+    }
+
 private:
     QHBoxLayout* m_layout = nullptr;
 };
