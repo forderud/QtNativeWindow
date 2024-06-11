@@ -50,7 +50,7 @@ BOOL CMfcAppCtrl::CMfcAppCtrlFactory::UpdateRegistry(BOOL bRegister) {
             m_clsid,
             m_lpszProgID,
             IDS_MFCAPP,
-            IDB_MFCAPP,
+            0, // bitmap
             afxRegApartmentThreading,
             s_MfcAppOleMisc,
             LIBID_MfcOleLib,
