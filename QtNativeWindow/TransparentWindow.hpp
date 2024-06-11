@@ -33,7 +33,7 @@ private:
     END_MSG_MAP()
 
     // Message Handlers
-    LRESULT OnPaint(UINT nMsg, WPARAM wparam, LPARAM lparam, BOOL& bHandled) {
+    LRESULT OnPaint(UINT nMsg, WPARAM wparam, LPARAM lparam, BOOL& handled) {
         PAINTSTRUCT ps = {};
         HDC hdc = BeginPaint(&ps);
 
@@ -52,7 +52,7 @@ private:
         return 0; // paint completed
     }
 
-    LRESULT OnHitTest(UINT nMsg, WPARAM wparam, LPARAM lparam, BOOL& bHandled) {
+    LRESULT OnHitTest(UINT nMsg, WPARAM wparam, LPARAM lparam, BOOL& handled) {
         POINT pt{ GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam) };
         ScreenToClient(&pt); // convert to client coordinates
 
@@ -65,14 +65,14 @@ private:
             return HTTRANSPARENT; // forward message to underlying window
     }
 
-    LRESULT OnEraseBackground(UINT nMsg, WPARAM wparam, LPARAM lparam, BOOL& bHandled) {
+    LRESULT OnEraseBackground(UINT nMsg, WPARAM wparam, LPARAM lparam, BOOL& handled) {
         return 0; // background not cleared
     }
 
-    LRESULT OnLButtonDown(UINT, WPARAM, LPARAM, BOOL& bHandled) {
+    LRESULT OnLButtonDown(UINT, WPARAM, LPARAM, BOOL& handled) {
         wprintf(L"TransparentWindow WM_LBUTTONDOWN.\n");
         SetFocus();
-        bHandled = FALSE; // don't absorb message
+        handled = FALSE; // don't absorb message
         return 0;
     }
 

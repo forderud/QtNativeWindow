@@ -28,7 +28,7 @@ private:
     END_MSG_MAP()
 
     // Message Handlers
-    LRESULT OnPaint(UINT nMsg, WPARAM wparam, LPARAM lparam, BOOL& bHandled) {
+    LRESULT OnPaint(UINT nMsg, WPARAM wparam, LPARAM lparam, BOOL& handled) {
         PAINTSTRUCT ps = {};
         HDC hdc = BeginPaint(&ps);
 
@@ -47,7 +47,7 @@ private:
         return 0; // paint completed
     }
 
-    LRESULT OnEraseBackground(UINT nMsg, WPARAM wparam, LPARAM lparam, BOOL& bHandled) {
+    LRESULT OnEraseBackground(UINT nMsg, WPARAM wparam, LPARAM lparam, BOOL& handled) {
         if (!m_initialized) {
             m_initialized = true;
 
@@ -68,10 +68,10 @@ private:
         return 1; // background erased
     }
 
-    LRESULT OnLButtonDown(UINT, WPARAM, LPARAM, BOOL& bHandled) {
+    LRESULT OnLButtonDown(UINT, WPARAM, LPARAM, BOOL& handled) {
         wprintf(L"LayeredWindow WM_LBUTTONDOWN.\n");
         SetFocus();
-        bHandled = FALSE; // don't absorb message
+        handled = FALSE; // don't absorb message
         return 0;
     }
 
