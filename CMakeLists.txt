@@ -8,6 +8,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # enable unicode for all projects
 add_definitions(-DUNICODE -D_UNICODE)
 
+# Output DLL, LIB & PDB files to out/$(Configuration)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
+set(CMAKE_PDB_OUTPUT_DIRECTORY     "${CMAKE_BINARY_DIR}")
+
 add_subdirectory(MfcOleControl)
 add_subdirectory(QtNativeWindow)
 
