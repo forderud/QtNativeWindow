@@ -6,14 +6,14 @@
 library MfcAppLib {
     // Primary dispatch interface
     [uuid(2636F667-54BA-4DFC-8345-919016056346)]
-    dispinterface _DMfcApp {
+    dispinterface DMfcAppPrimary {
         properties:
         methods:
     };
 
     // Event dispatch interface
     [uuid(5A956D8D-5BE4-4C41-9FC5-530BEDAD8B6E)]
-    dispinterface _DMfcAppEvents {
+    dispinterface DMfcAppEvents {
         properties:
             // Event interface has no properties
         methods:
@@ -21,6 +21,6 @@ library MfcAppLib {
 
     [uuid(45C33494-127D-4AEA-B7EB-63A203D69E8A)]
     coclass MfcApp {
-        [default] interface _DMfcApp;
+        [default] interface DMfcAppPrimary;
     };
 };

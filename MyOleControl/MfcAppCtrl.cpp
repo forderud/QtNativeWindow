@@ -62,7 +62,7 @@ BOOL CMfcAppCtrl::CMfcAppCtrlFactory::UpdateRegistry(BOOL bRegister) {
 
 
 CMfcAppCtrl::CMfcAppCtrl() {
-    InitializeIIDs(&__uuidof(_DMfcApp), &__uuidof(_DMfcAppEvents));
+    InitializeIIDs(&__uuidof(DMfcAppPrimary), &__uuidof(DMfcAppEvents));
     // TODO: Initialize your control's instance data here.
 
     SetText(L"CMfcAppCtrl"); // name window handle
