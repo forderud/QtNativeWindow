@@ -10,3 +10,6 @@ add_definitions(-DUNICODE -D_UNICODE)
 
 add_subdirectory(MfcOleControl)
 add_subdirectory(QtNativeWindow)
+
+# make QtNativeWindow default project in VS solution
+set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT QtNativeWindow)
