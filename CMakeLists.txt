@@ -8,5 +8,5 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # enable unicode for all projects
 add_definitions(-DUNICODE -D_UNICODE)
 
-add_subdirectory(MyOleControl)
+add_subdirectory(MfcOleControl)
 add_subdirectory(QtNativeWindow)
