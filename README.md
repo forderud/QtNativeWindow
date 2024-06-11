@@ -3,7 +3,7 @@ Sample code for embedding non-Qt UI in a Qt application
 ![image](https://github.com/forderud/QtForeignWindow/assets/2671400/d88c550f-8141-4cc6-bb95-70050e304235)
 
 Known issues:
-* Child window flickering problem worked around manually with [`WS_EX_COMPOSITED`](https://learn.microsoft.com/en-us/windows/win32/winmsg/extended-window-styles).
+* Child window flickering problem worked around with [`WS_EX_COMPOSITED`](https://learn.microsoft.com/en-us/windows/win32/winmsg/extended-window-styles).
 * Admin privileges required to build & test: #1.
 
 Documentation:
