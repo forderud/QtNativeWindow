@@ -6,7 +6,7 @@ add_library(MfcOleControl SHARED
     MfcAppCtrl.h
     Resource.h
     targetver.h
-    MyOleControl.rc
+    MfcOleControl.rc
     MyOleControl.idl
 )
 
