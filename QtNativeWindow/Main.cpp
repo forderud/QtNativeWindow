@@ -25,7 +25,7 @@ public:
 
 #ifdef AVOID_FLICKERING_WITH_COMPOSITED_WINDOW
         // enable double-buffering with WS_EX_COMPOSITED to avoid flickering
-        // TODO: Figure out how to do this through the Qt API
+        // TODO: Figure out how to do this through Qt
         auto wnd = (HWND)mainWidget->winId();
         SetWindowLongW(wnd, GWL_EXSTYLE, GetWindowLongW(wnd, GWL_EXSTYLE) | WS_EX_COMPOSITED);
 #endif
