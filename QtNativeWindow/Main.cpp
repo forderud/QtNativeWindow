@@ -57,13 +57,11 @@ int main(int argc, char *argv[]) {
     win.AddOleControl("{45C33494-127D-4AEA-B7EB-63A203D69E8A}"); // MfcOleControl
 
     // add native window with WS_EX_LAYERED-based transparency
-    LayeredWindow lw;
-    lw.Create(reinterpret_cast<HWND>(win.winId())); // parent window handle from Qt
+    LayeredWindow lw(reinterpret_cast<HWND>(win.winId())); // parent window handle from Qt
     win.AddNativeWindow(lw.m_hWnd); // add to Qt window
 
     // add native window with WS_EX_TRANSPARENT-based transparency
-    TransparentWindow tw;
-    tw.Create(reinterpret_cast<HWND>(win.winId())); // parent window handle from Qt
+    TransparentWindow tw(reinterpret_cast<HWND>(win.winId())); // parent window handle from Qt
     win.AddNativeWindow(tw.m_hWnd); // add to Qt window
 
     win.resize(800, 400);

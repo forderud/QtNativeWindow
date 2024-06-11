@@ -9,7 +9,8 @@
     Custom hit testing is not required, since Windows already knows which pixels are transparent. */
 class LayeredWindow : public CWindowImpl<LayeredWindow> {
 public:
-    LayeredWindow() {
+    LayeredWindow(HWND parent) {
+        Create(parent);
     }
 
     ~LayeredWindow() override {

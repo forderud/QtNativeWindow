@@ -9,7 +9,8 @@
     Uses WM_NCHITTEST for custom hit testing to forward mouse messages in background areas to the underlying window. */
 class TransparentWindow : public CWindowImpl<TransparentWindow> {
 public:
-    TransparentWindow() {
+    TransparentWindow(HWND parent) {
+        Create(parent);
     }
 
     ~TransparentWindow() override {
