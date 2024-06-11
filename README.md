@@ -4,6 +4,7 @@ Sample code for embedding non-Qt UI in a Qt application. Emphasis is put on nati
 
 ### Known issues
 * Child window flickering problem worked around with [`WS_EX_COMPOSITED`](https://learn.microsoft.com/en-us/windows/win32/winmsg/extended-window-styles).
+* OLE window not yet semi-transparent.
 * Admin privileges required to build & test: https://github.com/forderud/QtNativeWindow/issues/1.
 * Qt SDK path hardcoded in `QtNativeWindow.bat`.
 
