@@ -11,7 +11,7 @@ CMfcAppApp theApp;
 STDAPI DllRegisterServer() {
     AFX_MANAGE_STATE(_afxModuleAddrThis);
 
-    if (!AfxOleRegisterTypeLib(AfxGetInstanceHandle(), LIBID_MfcAppLib))
+    if (!AfxOleRegisterTypeLib(AfxGetInstanceHandle(), LIBID_MfcOleLib))
         return ResultFromScode(SELFREG_E_TYPELIB);
 
     if (!COleObjectFactoryEx::UpdateRegistryAll(TRUE))
@@ -26,7 +26,7 @@ STDAPI DllRegisterServer() {
 STDAPI DllUnregisterServer() {
     AFX_MANAGE_STATE(_afxModuleAddrThis);
 
-    if (!AfxOleUnregisterTypeLib(LIBID_MfcAppLib, 1, 0))
+    if (!AfxOleUnregisterTypeLib(LIBID_MfcOleLib, 1, 0))
         return ResultFromScode(SELFREG_E_TYPELIB);
 
     if (!COleObjectFactoryEx::UpdateRegistryAll(FALSE))

@@ -24,7 +24,7 @@ IMPLEMENT_OLECREATE_NOREGNAME(CMfcAppCtrl, __uuidof(MfcApp).Data1, __uuidof(MfcA
     __uuidof(MfcApp).Data4[0], __uuidof(MfcApp).Data4[1], __uuidof(MfcApp).Data4[2], __uuidof(MfcApp).Data4[3], __uuidof(MfcApp).Data4[4], __uuidof(MfcApp).Data4[5], __uuidof(MfcApp).Data4[6], __uuidof(MfcApp).Data4[7])
 
 // Type library ID and version
-IMPLEMENT_OLETYPELIB(CMfcAppCtrl, LIBID_MfcAppLib, 1, 0)
+IMPLEMENT_OLETYPELIB(CMfcAppCtrl, LIBID_MfcOleLib, 1, 0)
 
 // Control type information
 static const DWORD s_MfcAppOleMisc =
@@ -53,7 +53,7 @@ BOOL CMfcAppCtrl::CMfcAppCtrlFactory::UpdateRegistry(BOOL bRegister) {
             IDB_MFCAPP,
             afxRegApartmentThreading,
             s_MfcAppOleMisc,
-            LIBID_MfcAppLib,
+            LIBID_MfcOleLib,
             1, 0);
     } else {
         return AfxOleUnregisterClass(m_clsid, m_lpszProgID);

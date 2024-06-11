@@ -3,7 +3,7 @@
 #include <idispids.h>
 
 [uuid(0C31A6C5-DD54-4A5C-8067-3A3F692B877F), version(1.0), control]
-library MfcAppLib {
+library MfcOleLib {
     // Primary dispatch interface
     [uuid(2636F667-54BA-4DFC-8345-919016056346)]
     dispinterface DMfcAppPrimary {
