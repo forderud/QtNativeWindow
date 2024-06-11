@@ -12,7 +12,7 @@ add_library(MfcOleControl SHARED
 
 set_property(TARGET MfcOleControl PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
-# The MIDL output files (e.g. MyOleControl_i.c) are stored in the intermediate directory,
+# The MIDL output files (e.g. MfcOleControl_i.c) are stored in the intermediate directory,
 # and there is no known way to change it from CMake. This is different than a regular
 # VS projects, where the MIDL output files are stored in ${ProjectDir}.
 #

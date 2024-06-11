@@ -54,7 +54,7 @@ int main(int argc, char *argv[]) {
     QtWindowWithNativeContent win;
 
     // add OLE control
-    win.AddOleControl("{45C33494-127D-4AEA-B7EB-63A203D69E8A}"); // MyOleControl
+    win.AddOleControl("{45C33494-127D-4AEA-B7EB-63A203D69E8A}"); // MfcOleControl
 
     // add native window with WS_EX_LAYERED-based transparency
     LayeredWindow lw;

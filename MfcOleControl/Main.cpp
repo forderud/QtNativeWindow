@@ -21,7 +21,6 @@ STDAPI DllRegisterServer() {
 }
 
 
-
 // Removes entries from the system registry
 STDAPI DllUnregisterServer() {
     AFX_MANAGE_STATE(_afxModuleAddrThis);
