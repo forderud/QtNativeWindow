@@ -27,14 +27,14 @@ IMPLEMENT_OLECREATE_NOREGNAME(CMfcAppCtrl, __uuidof(MfcApp).Data1, __uuidof(MfcA
 IMPLEMENT_OLETYPELIB(CMfcAppCtrl, LIBID_MfcAppLib, 1, 0)
 
 // Control type information
-static const DWORD _dwMfcAppOleMisc =
+static const DWORD s_MfcAppOleMisc =
     OLEMISC_ACTIVATEWHENVISIBLE |
     OLEMISC_SETCLIENTSITEFIRST |
     OLEMISC_INSIDEOUT |
     OLEMISC_CANTLINKINSIDE |
     OLEMISC_RECOMPOSEONRESIZE;
 
-IMPLEMENT_OLECTLTYPE(CMfcAppCtrl, IDS_MFCAPP, _dwMfcAppOleMisc)
+IMPLEMENT_OLECTLTYPE(CMfcAppCtrl, IDS_MFCAPP, s_MfcAppOleMisc)
 
 // Adds or removes system registry entries for CMfcAppCtrl
 BOOL CMfcAppCtrl::CMfcAppCtrlFactory::UpdateRegistry(BOOL bRegister) {
@@ -52,7 +52,7 @@ BOOL CMfcAppCtrl::CMfcAppCtrlFactory::UpdateRegistry(BOOL bRegister) {
             IDS_MFCAPP,
             IDB_MFCAPP,
             afxRegApartmentThreading,
-            _dwMfcAppOleMisc,
+            s_MfcAppOleMisc,
             LIBID_MfcAppLib,
             1, 0);
     } else {
