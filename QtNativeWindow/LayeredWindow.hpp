@@ -39,7 +39,7 @@ private:
         // draw filled ellipse
         Ellipse(hdc, ps.rcPaint.left, ps.rcPaint.top, ps.rcPaint.right, ps.rcPaint.bottom);
         // annotate with window style
-        DrawTextW(hdc, L"WS_EX_LAYERED", -1, &ps.rcPaint, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+        DrawTextW(hdc, L"native WS_EX_LAYERED", -1, &ps.rcPaint, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
         EndPaint(&ps);
         SelectObject(hdc, prev); // restore to prev. state

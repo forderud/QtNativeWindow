@@ -92,7 +92,7 @@ void CMfcAppCtrl::OnDraw(CDC* pdc, const CRect& rcBounds, const CRect& /* rcInva
     pdc->Ellipse(rcBounds);
 
     // draw app name
-    DrawTextW(pdc->m_hDC, L"MfcOleControl", -1, &const_cast<CRect&>(rcBounds), DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+    DrawTextW(pdc->m_hDC, L"MFC OLE control", -1, &const_cast<CRect&>(rcBounds), DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 }
 
 BEGIN_INTERFACE_MAP(CMfcAppCtrl, COleControl)
