@@ -10,7 +10,7 @@
 
 #define AVOID_FLICKERING_WITH_COMPOSITED_WINDOW
 
-/** Sample Qt window with native window UI. */
+/** Sample Qt application that contain native child windows. */
 class QtWindowWithNativeContent : public QMainWindow {
 public:
     QtWindowWithNativeContent() {
