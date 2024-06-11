@@ -1,6 +1,6 @@
 #include "targetver.h"
 #include <afxctl.h>     // MFC support for ActiveX Controls
-#include "MyOleControl_i.c"
+#include "MfcOleControl_i.c"
 
 class CMfcAppApp : public COleControlModule {
 };

@@ -7,7 +7,7 @@ add_library(MfcOleControl SHARED
     Resource.h
     targetver.h
     MfcOleControl.rc
-    MyOleControl.idl
+    MfcOleControl.idl
 )
 
 set_property(TARGET MfcOleControl PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
