@@ -1,7 +1,7 @@
 #include "targetver.h"
 #include "resource.h"   // main symbols
 #include <afxctl.h>     // MFC support for ActiveX Controls
-#include "MfcOleControl.h"
+#include "MfcOleControl_h.h"
 #include "MfcAppCtrl.h"
 #include "afxdialogex.h"
 
