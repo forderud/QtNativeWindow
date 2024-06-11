@@ -20,6 +20,11 @@ public:
 
         m_layout = new QHBoxLayout;
         mainWidget->setLayout(m_layout);
+
+        // enable double-buffering with WS_EX_COMPOSITED to avoid flickering
+        // TODO: Figure out how to do this through the Qt API
+        auto wnd = (HWND)mainWidget->winId();
+        SetWindowLongW(wnd, GWL_EXSTYLE, GetWindowLongW(wnd, GWL_EXSTYLE) | WS_EX_COMPOSITED);
     }
 
     void AddNativeWindow(HWND nativeHandle) {
