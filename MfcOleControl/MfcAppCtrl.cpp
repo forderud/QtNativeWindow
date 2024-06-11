@@ -72,27 +72,27 @@ CMfcAppCtrl::~CMfcAppCtrl() {
     // TODO: Cleanup your control's instance data here.
 }
 
-BOOL CMfcAppCtrl::OnEraseBkgnd(CDC* pdc) {
+BOOL CMfcAppCtrl::OnEraseBkgnd(CDC* dc) {
     CRect area;
     GetClientRect(&area);
 
     // draw background
     CBrush brush(RGB(255, 255, 255));
-    pdc->FillRect(&area, &brush);
+    dc->FillRect(&area, &brush);
 
     return 1; // background erased
 }
 
 // Drawing function
-void CMfcAppCtrl::OnDraw(CDC* pdc, const CRect& rcBounds, const CRect& /* rcInvalid */) {
-    if (!pdc)
+void CMfcAppCtrl::OnDraw(CDC* dc, const CRect& bounds, const CRect& /*invalid*/) {
+    if (!dc)
         return;
 
     // draw filled ellipse
-    pdc->Ellipse(rcBounds);
+    dc->Ellipse(bounds);
 
     // draw app name
-    DrawTextW(pdc->m_hDC, L"MFC OLE control", -1, &const_cast<CRect&>(rcBounds), DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+    DrawTextW(dc->m_hDC, L"MFC OLE control", -1, &const_cast<CRect&>(bounds), DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 }
 
 BEGIN_INTERFACE_MAP(CMfcAppCtrl, COleControl)

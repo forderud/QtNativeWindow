@@ -8,7 +8,7 @@ public:
     ~CMfcAppCtrl();
 
     afx_msg BOOL OnEraseBkgnd(CDC* pdc);
-    void OnDraw(CDC* pdc, const CRect& rcBounds, const CRect& rcInvalid) override;
+    void OnDraw(CDC* dc, const CRect& bounds, const CRect& invalid) override;
 
 protected:
     DECLARE_INTERFACE_MAP()
