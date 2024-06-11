@@ -73,6 +73,10 @@ CMfcAppCtrl::~CMfcAppCtrl() {
 }
 
 BOOL CMfcAppCtrl::OnEraseBkgnd(CDC* dc) {
+#ifdef TRANSPARENT_OLE_CONTROL
+    dc; // mute warning
+    return 0; // background not erased
+#else
     CRect area;
     GetClientRect(&area);
 
@@ -81,6 +85,7 @@ BOOL CMfcAppCtrl::OnEraseBkgnd(CDC* dc) {
     dc->FillRect(&area, &brush);
 
     return 1; // background erased
+#endif
 }
 
 // Drawing function
