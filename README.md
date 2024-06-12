@@ -13,11 +13,10 @@ Reported Qt issue: [QTBUG-126280](https://bugreports.qt.io/browse/QTBUG-126280) 
 
 ### OLE window transparency
 
-The OLE window is not yet semi-transparent.
+Transparent background has not yet been enabled for the OLE window due to [Active Qt](https://doc.qt.io/qt-6/activeqt-index.html) drawing artifacts.
 
 
 ## Documentation
 * Qt [Window Embedding](https://doc.qt.io/qt-6/platform-integration.html#window-embedding)
 * [QWindow::fromWinId](https://doc.qt.io/qt-6/qwindow.html#fromWinId)
 * [QWidget::createWindowContainer](https://doc.qt.io/qt-6/qwidget.html#createWindowContainer)
-* [Active Qt](https://doc.qt.io/qt-6/activeqt-index.html)
