@@ -11,7 +11,7 @@ The semi-transparent foreign windows showing green & blue circles will *flicker 
 
 Reported Qt issue: [QTBUG-126280](https://bugreports.qt.io/browse/QTBUG-126280) Semi-transparent foreign windows flicker.
 
-### OLE window transparency
+### Qt OLE window transparency
 
 Transparent background has not yet been enabled for the OLE window due to [Active Qt](https://doc.qt.io/qt-6/activeqt-index.html) drawing artifacts.
 
