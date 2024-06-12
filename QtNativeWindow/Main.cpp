@@ -43,9 +43,10 @@ public:
 
     void AddOleControl(QString cls) {
         auto* widget = new QAxWidget();
-        widget->setControl(cls);
+        bool ok = widget->setControl(cls);
 
-        m_layout->addWidget(widget);
+        if (ok)
+            m_layout->addWidget(widget);
     }
 
     void mousePressEvent(QMouseEvent* evt) override {
