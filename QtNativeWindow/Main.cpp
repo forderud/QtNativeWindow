@@ -8,6 +8,7 @@
 #include "TransparentWindow.hpp"
 
 
+#define TEST_OLE_CONTROL
 #define AVOID_FLICKERING_WITH_COMPOSITED_WINDOW
 
 /** Sample Qt application that contain native child windows. */
@@ -63,8 +64,11 @@ int main(int argc, char *argv[]) {
 
     QtWindowWithNativeContent win;
 
+
+#ifdef TEST_OLE_CONTROL
     // add OLE control
     win.AddOleControl("{45C33494-127D-4AEA-B7EB-63A203D69E8A}"); // MfcOleControl
+#endif
 
     // add native window with WS_EX_LAYERED-based transparency
     LayeredWindow lw(reinterpret_cast<HWND>(win.winId())); // parent window handle from Qt
