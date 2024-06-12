@@ -7,7 +7,7 @@ Sample code for embedding non-Qt UI in a Qt application. Emphasis is put on nati
 
 ### Qt foreign window flickering
 
-The semi-transparent foreign windows showing green & blue circles will *flicker when the main window is resized*. This is currently worked around by manually setting [`WS_EX_COMPOSITED`](https://learn.microsoft.com/en-us/windows/win32/winmsg/extended-window-styles) on the parent Qt window. However, this feels like a hack.
+The semi-transparent foreign windows showing green & blue circles will *flicker when the main window is resized*. This is currently worked around by manually setting [`WS_EX_COMPOSITED`](https://learn.microsoft.com/en-us/windows/win32/winmsg/extended-window-styles) on the parent Qt window. However, this feels like a hack that leads to other drawing artifacts.
 
 Reported Qt issue: [QTBUG-126280](https://bugreports.qt.io/browse/QTBUG-126280) Semi-transparent foreign windows flicker.
 
