@@ -13,6 +13,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
 set(CMAKE_PDB_OUTPUT_DIRECTORY     "${CMAKE_BINARY_DIR}")
 
+file(TOUCH ${CMAKE_BINARY_DIR}/MfcOleControl.dll.manifest) # placeholder file until MfcOleControl is built
+
 include_external_msproject(MfcOleControl ${CMAKE_CURRENT_SOURCE_DIR}/MfcOleControl/MfcOleControl.vcxproj PLATFORM x64)
 add_subdirectory(QtNativeWindow)
 
