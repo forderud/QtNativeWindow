@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34728.176
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QtNativeWindow", "QtNativeWindow\QtNativeWindow.vcxproj", "{E6231CC0-046D-4DDF-B402-E4487B12D43C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D4C2EDF4-C864-447E-BC61-E4F65892FA11} = {D4C2EDF4-C864-447E-BC61-E4F65892FA11}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MfcOleControl", "MfcOleControl\MfcOleControl.vcxproj", "{D4C2EDF4-C864-447E-BC61-E4F65892FA11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6231CC0-046D-4DDF-B402-E4487B12D43C}.Debug|x64.ActiveCfg = Debug|x64
+		{E6231CC0-046D-4DDF-B402-E4487B12D43C}.Debug|x64.Build.0 = Debug|x64
+		{E6231CC0-046D-4DDF-B402-E4487B12D43C}.Release|x64.ActiveCfg = Release|x64
+		{E6231CC0-046D-4DDF-B402-E4487B12D43C}.Release|x64.Build.0 = Release|x64
+		{D4C2EDF4-C864-447E-BC61-E4F65892FA11}.Debug|x64.ActiveCfg = Debug|x64
+		{D4C2EDF4-C864-447E-BC61-E4F65892FA11}.Debug|x64.Build.0 = Debug|x64
+		{D4C2EDF4-C864-447E-BC61-E4F65892FA11}.Release|x64.ActiveCfg = Release|x64
+		{D4C2EDF4-C864-447E-BC61-E4F65892FA11}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {05DF1D35-94F8-4F70-8394-CE4B09F22E8B}
+	EndGlobalSection
+EndGlobal
