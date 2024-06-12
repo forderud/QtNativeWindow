@@ -64,7 +64,6 @@ int main(int argc, char *argv[]) {
 
     QtWindowWithNativeContent win;
 
-
 #ifdef TEST_OLE_CONTROL
     // add OLE control
     win.AddOleControl("{45C33494-127D-4AEA-B7EB-63A203D69E8A}"); // MfcOleControl
@@ -79,7 +78,7 @@ int main(int argc, char *argv[]) {
     win.AddNativeWindow(tw.m_hWnd); // add to Qt window
 
     win.resize(800, 400);
-
     win.show();
+
     return a.exec();
 }
