@@ -4,6 +4,7 @@ qt_standard_project_setup()
 
 qt_add_executable(QtNativeWindow
     app.manifest # manifest to unlock Win10 features
+    ${CMAKE_BINARY_DIR}/MfcOleControl.dll.manifest # for regfree COM
     Main.cpp
     LayeredWindow.hpp
     TransparentWindow.hpp
