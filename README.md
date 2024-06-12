@@ -20,3 +20,4 @@ The OLE window is not yet semi-transparent.
 * Qt [Window Embedding](https://doc.qt.io/qt-6/platform-integration.html#window-embedding)
 * [QWindow::fromWinId](https://doc.qt.io/qt-6/qwindow.html#fromWinId)
 * [QWidget::createWindowContainer](https://doc.qt.io/qt-6/qwidget.html#createWindowContainer)
+* [Active Qt](https://doc.qt.io/qt-6/activeqt-index.html)
