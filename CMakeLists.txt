@@ -16,5 +16,8 @@ set(CMAKE_PDB_OUTPUT_DIRECTORY     "${CMAKE_BINARY_DIR}")
 include_external_msproject(MfcOleControl ${CMAKE_CURRENT_SOURCE_DIR}/MfcOleControl/MfcOleControl.vcxproj PLATFORM x64)
 add_subdirectory(QtNativeWindow)
 
+# build MfcOleControl before QtNativeWindow
+add_dependencies(QtNativeWindow MfcOleControl)
+
 # make QtNativeWindow default project in VS solution
 set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT QtNativeWindow)
