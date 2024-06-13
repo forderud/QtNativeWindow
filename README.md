@@ -21,7 +21,7 @@ Transparent background has not yet been enabled for the OLE window due to [QAxWi
 This problem have not yet been submitted to the Qt company.
 
 
-## Qt Documentation
+## Qt documentation
 * Qt [Window Embedding](https://doc.qt.io/qt-6/platform-integration.html#window-embedding)
 * [QWindow::fromWinId](https://doc.qt.io/qt-6/qwindow.html#fromWinId)
 * [QWidget::createWindowContainer](https://doc.qt.io/qt-6/qwidget.html#createWindowContainer)
