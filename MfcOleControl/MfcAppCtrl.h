@@ -1,6 +1,7 @@
 #pragma once
 
-//#define TRANSPARENT_OLE_CONTROL
+
+#define TRANSPARENT_OLE_CONTROL
 
 class CMfcAppCtrl : public COleControl {
     DECLARE_DYNCREATE(CMfcAppCtrl)
