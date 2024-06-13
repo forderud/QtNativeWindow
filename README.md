@@ -13,7 +13,7 @@ Reported Qt issue: [QTBUG-126280](https://bugreports.qt.io/browse/QTBUG-126280) 
 
 ### Qt OLE window transparency
 
-Transparent background has not yet been enabled for the OLE window due to [Active Qt](https://doc.qt.io/qt-6/activeqt-index.html) drawing artifacts. Plan to start tackling this after the foreign window flickering problem is fixed.
+Transparent background has not yet been enabled for the OLE window due to [Active Qt](https://doc.qt.io/qt-6/activeqt-index.html) drawing artifacts. Define `TRANSPARENT_OLE_CONTROL` to reproduce this problem.
 
 
 ## Documentation
