@@ -14,7 +14,7 @@ Window hierarchy with extended styles:
 [QTBUG-126280](https://bugreports.qt.io/browse/QTBUG-126280): The semi-transparent foreign windows showing green & blue circles will *flicker when the main window is resized*. This is currently worked around by manually setting [`WS_EX_COMPOSITED`](https://learn.microsoft.com/en-us/windows/win32/winmsg/extended-window-styles) on the parent Qt window. However, this feels like a hack that leads to other drawing artifacts.
 
 
-### Qt OLE control transparency
+### Qt OLE control transparency problem
 
 [QAxWidget](https://doc.qt.io/qt-6/qaxwidget.html) doesn't seem to handle OLE control with transparent background properly. This leads to drawing artifacts where the background is not cleared.
 
