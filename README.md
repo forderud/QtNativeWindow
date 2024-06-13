@@ -4,8 +4,7 @@ Screenshot:
 ![image](https://github.com/forderud/QtNativeWindow/assets/2671400/389a1b61-3d38-4bd9-a3cd-dc19deae091d)
 
 Window hierarchy with [extended window styles](https://learn.microsoft.com/en-us/windows/win32/winmsg/extended-window-styles):  
-![image](https://github.com/forderud/QtNativeWindow/assets/2671400/1d665924-05d1-4b11-a812-734991d7bd4c)
-
+![image](https://github.com/forderud/QtNativeWindow/assets/2671400/bf7e0231-3e0a-43cc-929a-7949e1cf8866)
 
 ## Discovered issues
 
