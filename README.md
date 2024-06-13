@@ -16,12 +16,13 @@ Window hierarchy with extended styles:
 
 ### Qt OLE window transparency
 
-Transparent background has not yet been enabled for the OLE window due to [Active Qt](https://doc.qt.io/qt-6/activeqt-index.html) drawing artifacts. Define `TRANSPARENT_OLE_CONTROL` to reproduce this problem.
+Transparent background has not yet been enabled for the OLE window due to [QAxWidget](https://doc.qt.io/qt-6/qaxwidget.html) drawing artifacts. Define `TRANSPARENT_OLE_CONTROL` to reproduce this problem.
 
 This problem have not yet been submitted to the Qt company.
 
 
-## Documentation
+## Qt Documentation
 * Qt [Window Embedding](https://doc.qt.io/qt-6/platform-integration.html#window-embedding)
 * [QWindow::fromWinId](https://doc.qt.io/qt-6/qwindow.html#fromWinId)
 * [QWidget::createWindowContainer](https://doc.qt.io/qt-6/qwidget.html#createWindowContainer)
+* [Using ActiveX controls and COM in Qt](https://doc.qt.io/qt-6/activeqt-container.html)
