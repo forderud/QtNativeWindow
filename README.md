@@ -16,7 +16,7 @@ Window hierarchy with extended styles:
 
 ### Qt OLE control transparency problem
 
-[QAxWidget](https://doc.qt.io/qt-6/qaxwidget.html) doesn't seem to handle OLE control with transparent background properly. This leads to drawing artifacts where the background is not cleared.
+[QAxWidget](https://doc.qt.io/qt-6/qaxwidget.html) doesn't seem to handle OLE controls with transparent background properly. This leads to drawing artifacts where the background is not cleared.
 
 This problem have not yet been submitted to the Qt company.
 
