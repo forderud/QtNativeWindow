@@ -1,10 +1,10 @@
 Sample code for **embedding non-Qt UI in a Qt application**. Emphasis is put on native windows with transparent background.
 
 Screenshot:  
-![image](https://github.com/forderud/QtNativeWindow/assets/2671400/e926b0d8-2f8e-4d1e-9c05-801908646619)
+![image](https://github.com/forderud/QtNativeWindow/assets/2671400/f5777ce5-ec10-4763-a9a1-25d2bc00f70b)
 
 Window hierarchy with extended styles:  
-![image](https://github.com/forderud/QtNativeWindow/assets/2671400/7faa2666-647a-4a1f-bfdb-4a64ddd78491)
+![image](https://github.com/forderud/QtNativeWindow/assets/2671400/1d665924-05d1-4b11-a812-734991d7bd4c)
 
 
 ## Discovered issues
