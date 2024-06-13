@@ -97,7 +97,12 @@ void CMfcAppCtrl::OnDraw(CDC* dc, const CRect& bounds, const CRect& /*invalid*/)
     dc->Ellipse(bounds);
 
     // draw app name
-    DrawTextW(dc->m_hDC, L"OLE WS_EX_TRANSPARENT", -1, &const_cast<CRect&>(bounds), DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+#ifdef TRANSPARENT_OLE_CONTROL
+    const wchar_t name[] = L"OLE WS_EX_TRANSPARENT";
+#else
+    const wchar_t name[] = L"OLE control";
+#endif
+    DrawTextW(dc->m_hDC, name, -1, &const_cast<CRect&>(bounds), DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 }
 
 BEGIN_INTERFACE_MAP(CMfcAppCtrl, COleControl)
