@@ -14,6 +14,8 @@ Sample code for **embedding non-Qt UI in a Qt application**. Emphasis is put on 
 
 Transparent background has not yet been enabled for the OLE window due to [Active Qt](https://doc.qt.io/qt-6/activeqt-index.html) drawing artifacts. Define `TRANSPARENT_OLE_CONTROL` to reproduce this problem.
 
+This problem have not yet been submitted to the Qt company.
+
 
 ## Documentation
 * Qt [Window Embedding](https://doc.qt.io/qt-6/platform-integration.html#window-embedding)
