@@ -1,4 +1,4 @@
-Sample code for embedding non-Qt UI in a Qt application. Emphasis is put on native windows with transparent background.
+Sample code for **embedding non-Qt UI in a Qt application**. Emphasis is put on native windows with transparent background.
 
 ![image](https://github.com/forderud/QtNativeWindow/assets/2671400/e926b0d8-2f8e-4d1e-9c05-801908646619)
 
