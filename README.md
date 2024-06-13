@@ -16,7 +16,7 @@ Window hierarchy with extended styles:
 
 ### Qt OLE window transparency
 
-Transparent background has not yet been enabled for the OLE window due to [QAxWidget](https://doc.qt.io/qt-6/qaxwidget.html) drawing artifacts. Define `TRANSPARENT_OLE_CONTROL` to reproduce this problem.
+[QAxWidget](https://doc.qt.io/qt-6/qaxwidget.html) doesn't seem to handle OLE windows with transparent background properly. This leads to drawing artifacts where the background is not cleared.
 
 This problem have not yet been submitted to the Qt company.
 
