@@ -24,7 +24,7 @@ This problem have not yet been submitted to the Qt company.
 * [Visual Studio 2022](https://visualstudio.microsoft.com/)
   - Select "Desktop development with C++" workload.
   - Select "C++ MFC for latest v143 build tools (x86 & x64)" component.
-* Qt SDK (any recent version)
+* [Qt SDK](https://www.qt.io/product/development-tools) (any recent version)
   - Select "Active Qt" component.
 * Qt VS Tools
 
