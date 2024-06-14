@@ -26,7 +26,7 @@ This problem have not yet been submitted to the Qt company.
   - Select "C++ MFC for latest v143 build tools (x86 & x64)" component.
 * [Qt SDK](https://www.qt.io/product/development-tools) (any recent version)
   - Select "Active Qt" component.
-* Qt VS Tools
+* [Qt VS Tools](https://doc.qt.io/qtvstools/)
 
 ## Qt documentation
 * Qt [Window Embedding](https://doc.qt.io/qt-6/platform-integration.html#window-embedding)
