@@ -21,7 +21,7 @@ Stop defining `AVOID_FLICKERING_WITH_COMPOSITED_WINDOW` to reproduce this issue.
 This problem have not yet been submitted to the Qt company.
 
 ## Prerequisites
-* Visual Studio 2022
+* [Visual Studio 2022](https://visualstudio.microsoft.com/)
   - Select "Desktop development with C++" workload.
   - Select "C++ MFC for latest v143 build tools (x86 & x64)" component.
 * Qt SDK (any recent version)
