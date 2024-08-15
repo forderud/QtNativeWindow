@@ -33,3 +33,6 @@ This problem have not yet been submitted to the Qt company.
 * [QWindow::fromWinId](https://doc.qt.io/qt-6/qwindow.html#fromWinId)
 * [QWidget::createWindowContainer](https://doc.qt.io/qt-6/qwidget.html#createWindowContainer)
 * [Using ActiveX controls and COM in Qt](https://doc.qt.io/qt-6/activeqt-container.html)
+
+## Microsoft resources
+* Raymond Chen: [I used WS_EX_COMPOSITED to get rid of my redrawing flicker, but it resulted in sluggish response](https://devblogs.microsoft.com/oldnewthing/20171018-00/?p=97245) - explains that `WS_EX_COMPOSITED` relies on the release the device contexts (DC) _or_ `End­Paint` calls to detect that rendering have completed.
