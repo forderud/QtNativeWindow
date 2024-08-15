@@ -2,6 +2,7 @@
 #include <atlbase.h>
 #include <atlwin.h>
 #include <atltypes.h>
+#include <cassert>
 
 
 /** Window that draws an ellipse on transparent background.
@@ -38,17 +39,64 @@ private:
         PAINTSTRUCT ps = {};
         HDC hdc = BeginPaint(&ps);
 
-        // change to blue color
-        HGDIOBJ prev = SelectObject(hdc, GetStockObject(DC_BRUSH));
-        SetDCBrushColor(hdc, RGB(0, 0, 255));
+        {
+            HDC hdcBmp = CreateCompatibleDC(hdc);
+            int width = ps.rcPaint.right - ps.rcPaint.left;
+            int height = ps.rcPaint.bottom - ps.rcPaint.top;
 
-        // draw filled ellipse
-        Ellipse(hdc, ps.rcPaint.left, ps.rcPaint.top, ps.rcPaint.right, ps.rcPaint.bottom);
+            HBITMAP bitmap = nullptr;
+            {
+                BITMAPINFO bmi = {};
+                bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+                bmi.bmiHeader.biWidth = width;
+                bmi.bmiHeader.biHeight = height;
+                bmi.bmiHeader.biPlanes = 1;
+                bmi.bmiHeader.biBitCount = 32;
+                bmi.bmiHeader.biCompression = BI_RGB;
+                bmi.bmiHeader.biSizeImage = width * height * 4;
+
+                // create offscreen bitmap with alpha channel
+                uint32_t* pixels = nullptr; // pixel buffer in 0xAARRGGBB format
+                bitmap = CreateDIBSection(hdcBmp, &bmi, DIB_RGB_COLORS, (void**)&pixels, NULL, 0);
+                SelectObject(hdcBmp, bitmap);
+
+                // draw filled ellipse into bitmap
+                for (int y = 0; y < height; y++) {
+                    for (int x = 0; x < width; x++) {
+                        POINT pt = { x + ps.rcPaint.left, y + ps.rcPaint.top};
+                        if (IsInsideEllipse({ x, y }, ps.rcPaint)) {
+                            // NOTE: premultipled alpha here
+                            BYTE r = 0;
+                            BYTE g = 0;
+                            BYTE b = 64; // B=255 multiplied by alpha
+                            BYTE a = 64; // 25% opaque (75% transparent)
+                            pixels[x + y*width] = (a << 24) | (r << 16) | (g << 8) | b;
+                        }
+                    }
+                }
+            }
+
+            {
+                BLENDFUNCTION blend = {};
+                blend.BlendOp = AC_SRC_OVER;
+                blend.BlendFlags = 0;
+                blend.SourceConstantAlpha = 0xFF;
+                blend.AlphaFormat = AC_SRC_ALPHA; // per-pixel alpha
+
+                // copy bitmat to window buffer with per-pixel alpha blending
+                BOOL ok = GdiAlphaBlend(hdc, ps.rcPaint.left, ps.rcPaint.top, width, height, hdcBmp, 0, 0, width, height, blend);
+                assert(ok);
+            }
+
+            DeleteObject(bitmap);
+            DeleteDC(hdcBmp);
+        }
+
         // annotate with window style
+        SetDCBrushColor(hdc, RGB(0, 0, 255));
         DrawTextW(hdc, L"native WS_EX_TRANSPARENT", -1, &ps.rcPaint, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
         EndPaint(&ps);
-        SelectObject(hdc, prev); // restore to prev. state
 
         return 0; // paint completed
     }
