@@ -10,6 +10,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QtNativeWindow", "QtNativeW
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MfcOleControl", "MfcOleControl\MfcOleControl.vcxproj", "{D4C2EDF4-C864-447E-BC61-E4F65892FA11}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AtlNativeWindow", "AtlNativeWindow\AtlNativeWindow.vcxproj", "{D3BBAC37-5633-4D48-A290-82044A090E43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -24,6 +26,10 @@ Global
 		{D4C2EDF4-C864-447E-BC61-E4F65892FA11}.Debug|x64.Build.0 = Debug|x64
 		{D4C2EDF4-C864-447E-BC61-E4F65892FA11}.Release|x64.ActiveCfg = Release|x64
 		{D4C2EDF4-C864-447E-BC61-E4F65892FA11}.Release|x64.Build.0 = Release|x64
+		{D3BBAC37-5633-4D48-A290-82044A090E43}.Debug|x64.ActiveCfg = Debug|x64
+		{D3BBAC37-5633-4D48-A290-82044A090E43}.Debug|x64.Build.0 = Debug|x64
+		{D3BBAC37-5633-4D48-A290-82044A090E43}.Release|x64.ActiveCfg = Release|x64
+		{D3BBAC37-5633-4D48-A290-82044A090E43}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
