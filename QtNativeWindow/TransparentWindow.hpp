@@ -17,6 +17,7 @@ public:
     }
 
     static DWORD GetWndExStyle(DWORD dwExStyle) {
+        // WS_EX_TRANSPARENT ensure that non-WS_EX_TRANSPARENT siblings windows are painted first (see https://devblogs.microsoft.com/oldnewthing/20121217-00/?p=5823)
         return dwExStyle | WS_EX_TRANSPARENT;
     }
 
