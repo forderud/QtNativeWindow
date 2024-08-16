@@ -48,11 +48,11 @@ int main(int argc, char* argv[]) {
     ParentWindow mainWin;
     mainWin.Create(nullptr, 0, 0, WS_OVERLAPPEDWINDOW);
 
-    TransparentWindow lw(mainWin);
-    lw.MoveWindow(50, 50, 400, 400);
+    TransparentWindow tw(mainWin);
+    tw.MoveWindow(10, 10, 400, 400);
 
-    LayeredWindow rw(mainWin);
-    rw.MoveWindow(500, 50, 400, 400);
+    LayeredWindow lw(mainWin);
+    lw.MoveWindow(420, 10, 400, 400);
 
     mainWin.ShowWindow(SW_NORMAL);
 
