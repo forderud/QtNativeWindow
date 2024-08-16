@@ -63,7 +63,10 @@ int main(int argc, char* argv[]) {
     mainWin.ShowWindow(SW_NORMAL);
 
     MSG msg{};
-    while (GetMessageW(&msg, 0, 0, 0)) {
+    while (BOOL ret = GetMessageW(&msg, 0, 0, 0)) {
+        if (ret == -1) // error occured
+            break;
+
         TranslateMessage(&msg);
         DispatchMessageW(&msg);
     }
