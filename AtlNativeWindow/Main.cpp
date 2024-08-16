@@ -21,6 +21,7 @@ public:
 private:
     BEGIN_MSG_MAP(ParentWindow)
         MESSAGE_HANDLER(WM_PAINT, OnPaint)
+        MESSAGE_HANDLER(WM_DESTROY, OnDestroy)
     END_MSG_MAP()
 
     LRESULT OnPaint(UINT nMsg, WPARAM wparam, LPARAM lparam, BOOL& handled) {
@@ -42,6 +43,11 @@ private:
 
         return 0; // paint completed
     }
+
+    LRESULT OnDestroy(UINT nMsg, WPARAM wparam, LPARAM lparam, BOOL& handled) {
+        PostQuitMessage(0);
+        return 0;
+    }
 };
 
 int main(int argc, char* argv[]) {
@@ -58,9 +64,6 @@ int main(int argc, char* argv[]) {
 
     MSG msg{};
     while (GetMessageW(&msg, 0, 0, 0)) {
-        if (msg.message == WM_QUIT)
-            break;
-
         TranslateMessage(&msg);
         DispatchMessageW(&msg);
     }
