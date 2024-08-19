@@ -62,6 +62,7 @@ private:
                 prevObj = SelectObject(hdcBmp, bmpObj);
 
                 // draw filled ellipse into bitmap
+                // cannot use GDI Ellipse function here since it sets alpha=0 (see https://devblogs.microsoft.com/oldnewthing/20210915-00/?p=105687)
                 for (int y = 0; y < height; y++) {
                     for (int x = 0; x < width; x++) {
                         POINT pt = { x + ps.rcPaint.left, y + ps.rcPaint.top};
