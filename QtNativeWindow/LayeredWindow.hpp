@@ -76,5 +76,5 @@ private:
     }
 
     bool                  m_initialized = false;
-    static const COLORREF s_background = RGB(0, 0, 0); // magic background color that's treated as transparent
+    static const COLORREF s_background = RGB(1, 1, 1); // magic background color that's treated as transparent
 };
