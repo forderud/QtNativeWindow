@@ -97,7 +97,6 @@ private:
         }
 
         // annotate with window style
-        SetDCBrushColor(hdc, RGB(0, 0, 255));
         DrawTextW(hdc, L"native WS_EX_TRANSPARENT", -1, &ps.rcPaint, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
         EndPaint(&ps);
