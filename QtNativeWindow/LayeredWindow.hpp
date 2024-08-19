@@ -33,9 +33,8 @@ private:
         PAINTSTRUCT ps = {};
         HDC hdc = BeginPaint(&ps);
 
-        // change to green color
-        HGDIOBJ prev = SelectObject(hdc, GetStockObject(DC_BRUSH));
-        SetDCBrushColor(hdc, RGB(0, 255, 0));
+        HGDIOBJ prev = SelectObject(hdc, GetStockObject(DC_BRUSH)); // enable brush color change
+        SetDCBrushColor(hdc, RGB(0, 255, 0)); // green brush color
 
         // draw filled ellipse
         BOOL ok = Ellipse(hdc, ps.rcPaint.left, ps.rcPaint.top, ps.rcPaint.right, ps.rcPaint.bottom);
