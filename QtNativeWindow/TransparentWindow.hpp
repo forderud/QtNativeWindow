@@ -57,7 +57,7 @@ private:
                 bmi.bmiHeader.biSizeImage = width * height * 4;
 
                 // create offscreen bitmap with alpha channel
-                uint32_t* pixels = nullptr; // pixel buffer in 0xAARRGGBB format
+                RGBQUAD* pixels = nullptr; // pixel buffer in 0xAARRGGBB format
                 bmpObj = CreateDIBSection(hdcBmp, &bmi, DIB_RGB_COLORS, (void**)&pixels, NULL, 0);
                 prevObj = SelectObject(hdcBmp, bmpObj);
 
@@ -67,11 +67,11 @@ private:
                         POINT pt = { x + ps.rcPaint.left, y + ps.rcPaint.top};
                         if (IsInsideEllipse({ x, y }, ps.rcPaint)) {
                             // NOTE: premultipled alpha here
-                            BYTE r = 0;
-                            BYTE g = 0;
-                            BYTE b = 64; // B=255 multiplied by alpha
-                            BYTE a = 64; // 25% opaque (75% transparent)
-                            pixels[x + y*width] = (a << 24) | (r << 16) | (g << 8) | b;
+                            auto& px = pixels[x + y*width];
+                            px.rgbRed = 0;
+                            px.rgbGreen = 0;
+                            px.rgbBlue = 64; // B=255 multiplied by alpha
+                            px.rgbReserved = 64; // A=25% opaque (75% transparent)
                         }
                     }
                 }
