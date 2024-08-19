@@ -2,6 +2,7 @@
 #include <atlbase.h>
 #include <atlwin.h>
 #include <atltypes.h>
+#include <cassert>
 
 
 /** Window that draws an ellipse on transparent background.
@@ -37,7 +38,8 @@ private:
         SetDCBrushColor(hdc, RGB(0, 255, 0));
 
         // draw filled ellipse
-        Ellipse(hdc, ps.rcPaint.left, ps.rcPaint.top, ps.rcPaint.right, ps.rcPaint.bottom);
+        BOOL ok = Ellipse(hdc, ps.rcPaint.left, ps.rcPaint.top, ps.rcPaint.right, ps.rcPaint.bottom);
+        assert(ok);
         // annotate with window style
         DrawTextW(hdc, L"native WS_EX_LAYERED", -1, &ps.rcPaint, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
@@ -53,8 +55,10 @@ private:
 
             // configure transparent background
             // work-around for UI not being shown initially if doing this from WM_CREATE 
-            ModifyStyleEx(0, WS_EX_LAYERED);
-            SetLayeredWindowAttributes(m_hWnd, s_background, 0, LWA_COLORKEY);
+            BOOL ok = ModifyStyleEx(0, WS_EX_LAYERED);
+            assert(ok);
+            ok = SetLayeredWindowAttributes(m_hWnd, s_background, 0, LWA_COLORKEY);
+            assert(ok);
         }
 
         CRect area;
