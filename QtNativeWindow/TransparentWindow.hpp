@@ -44,7 +44,8 @@ private:
             int width = ps.rcPaint.right - ps.rcPaint.left;
             int height = ps.rcPaint.bottom - ps.rcPaint.top;
 
-            HBITMAP bitmap = nullptr;
+            HBITMAP bmpObj = nullptr;
+            HGDIOBJ prevObj = nullptr; // previous hdcBmp object (before bmpObj)
             {
                 BITMAPINFO bmi = {};
                 bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
@@ -57,8 +58,8 @@ private:
 
                 // create offscreen bitmap with alpha channel
                 uint32_t* pixels = nullptr; // pixel buffer in 0xAARRGGBB format
-                bitmap = CreateDIBSection(hdcBmp, &bmi, DIB_RGB_COLORS, (void**)&pixels, NULL, 0);
-                SelectObject(hdcBmp, bitmap);
+                bmpObj = CreateDIBSection(hdcBmp, &bmi, DIB_RGB_COLORS, (void**)&pixels, NULL, 0);
+                prevObj = SelectObject(hdcBmp, bmpObj);
 
                 // draw filled ellipse into bitmap
                 for (int y = 0; y < height; y++) {
@@ -88,7 +89,9 @@ private:
                 assert(ok);
             }
 
-            DeleteObject(bitmap);
+            // clean up
+            SelectObject(hdcBmp, prevObj);
+            DeleteObject(bmpObj);
             DeleteDC(hdcBmp);
         }
 
