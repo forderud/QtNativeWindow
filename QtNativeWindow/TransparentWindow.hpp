@@ -4,6 +4,16 @@
 #include <atltypes.h>
 #include <cassert>
 
+/** Convert red, green, blue & alpha values into a RGBQUAD with premultipled alpha channel. */
+RGBQUAD RGBAPremult(BYTE r, BYTE g, BYTE b, BYTE a) {
+    float alphaScale = a*1.0f/255; // in [0,1] range
+    RGBQUAD res{};
+    res.rgbRed = (BYTE)(r*alphaScale);
+    res.rgbGreen = (BYTE)(g*alphaScale);
+    res.rgbBlue = (BYTE)(b*alphaScale);
+    res.rgbReserved = a;
+    return res;
+}
 
 /** Window that draws an ellipse on transparent background.
     Uses WS_EX_TRANSPARENT and no background clearing to achieve a transparent background.
@@ -56,24 +66,19 @@ private:
                 bmi.bmiHeader.biCompression = BI_RGB;
                 bmi.bmiHeader.biSizeImage = width * height * 4;
 
-                // create offscreen bitmap with alpha channel
+                // create offscreen bitmap with premultiplied alpha channel
                 RGBQUAD* pixels = nullptr; // pixel buffer in 0xAARRGGBB format
                 bmpObj = CreateDIBSection(hdcBmp, &bmi, DIB_RGB_COLORS, (void**)&pixels, NULL, 0);
                 prevObj = SelectObject(hdcBmp, bmpObj);
 
                 // draw filled ellipse into bitmap
                 // cannot use GDI Ellipse function here since it sets alpha=0 (see https://devblogs.microsoft.com/oldnewthing/20210915-00/?p=105687)
+                RGBQUAD color = RGBAPremult(0, 0, 255, 64); // semi-transparent blue
                 for (int y = 0; y < height; y++) {
                     for (int x = 0; x < width; x++) {
                         POINT pt = { x + ps.rcPaint.left, y + ps.rcPaint.top}; // add x&y offset back so that pt matches ps.rcPaint
-                        if (IsInsideEllipse({ x, y }, ps.rcPaint)) {
-                            // NOTE: premultipled alpha here
-                            auto& px = pixels[x + y*width];
-                            px.rgbRed = 0;
-                            px.rgbGreen = 0;
-                            px.rgbBlue = 64; // B=255 multiplied by alpha
-                            px.rgbReserved = 64; // A=25% opaque (75% transparent)
-                        }
+                        if (IsInsideEllipse({ x, y }, ps.rcPaint))
+                            pixels[x + y*width] = color;
                     }
                 }
             }
