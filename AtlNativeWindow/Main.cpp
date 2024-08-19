@@ -29,7 +29,9 @@ private:
         HDC hdc = BeginPaint(&ps);
 
         HGDIOBJ oldBrush = SelectObject(hdc, GetStockObject(DC_BRUSH)); // enable brush color change
-        SetDCBrushColor(hdc, RGB(255, 255, 0)); // yellow brush color
+        SetDCBrushColor(hdc, RGB(255, 255, 0)); // yellow fill
+        SelectObject(hdc, GetStockObject(DC_PEN)); // enable pen color change
+        SetDCPenColor(hdc, RGB(63, 63, 63)); // dark gray outline
 
         // draw filled ellipse
         Ellipse(hdc, ps.rcPaint.left, ps.rcPaint.top, ps.rcPaint.right, ps.rcPaint.bottom);

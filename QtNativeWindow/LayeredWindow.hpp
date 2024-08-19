@@ -34,7 +34,10 @@ private:
         HDC hdc = BeginPaint(&ps);
 
         HGDIOBJ prev = SelectObject(hdc, GetStockObject(DC_BRUSH)); // enable brush color change
-        SetDCBrushColor(hdc, RGB(0, 255, 0)); // green brush color
+        SetDCBrushColor(hdc, RGB(0, 255, 0)); // green fill
+        SelectObject(hdc, GetStockObject(DC_PEN)); // enable pen color change
+        SetDCPenColor(hdc, RGB(63, 63, 63)); // dark gray outline
+
 
         // draw filled ellipse
         BOOL ok = Ellipse(hdc, ps.rcPaint.left, ps.rcPaint.top, ps.rcPaint.right, ps.rcPaint.bottom);
