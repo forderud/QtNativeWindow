@@ -67,8 +67,8 @@ private:
         // annotate with window style
         DrawTextW(hdc, L"native WS_EX_LAYERED", -1, &ps.rcPaint, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
-        EndPaint(&ps);
         SelectObject(hdc, prev); // restore to prev. state
+        EndPaint(&ps);
 
         return 0; // paint completed
     }
