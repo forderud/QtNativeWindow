@@ -1,7 +1,6 @@
 #pragma once
 
 
-#define TRANSPARENT_OLE_CONTROL
 
 class CMfcAppCtrl : public COleControl {
     DECLARE_DYNCREATE(CMfcAppCtrl)
@@ -10,9 +9,7 @@ public:
     ~CMfcAppCtrl();
 
     BOOL PreCreateWindow(CREATESTRUCT& cs) override {
-#ifdef TRANSPARENT_OLE_CONTROL
         cs.dwExStyle |= WS_EX_TRANSPARENT;
-#endif
         return COleControl::PreCreateWindow(cs);
     }
 

@@ -73,20 +73,8 @@ CMfcAppCtrl::~CMfcAppCtrl() {
     // TODO: Cleanup your control's instance data here.
 }
 
-BOOL CMfcAppCtrl::OnEraseBkgnd(CDC* dc) {
-#ifdef TRANSPARENT_OLE_CONTROL
-    dc; // mute warning
+BOOL CMfcAppCtrl::OnEraseBkgnd(CDC* /*dc*/) {
     return 0; // background not erased
-#else
-    CRect area;
-    GetClientRect(&area);
-
-    // draw background
-    CBrush brush(RGB(255, 255, 255));
-    dc->FillRect(&area, &brush);
-
-    return 1; // background erased
-#endif
 }
 
 // Drawing function
@@ -102,11 +90,7 @@ void CMfcAppCtrl::OnDraw(CDC* dc, const CRect& bounds, const CRect& /*invalid*/)
     }
 
     // draw app name
-#ifdef TRANSPARENT_OLE_CONTROL
     const wchar_t name[] = L"OLE WS_EX_TRANSPARENT";
-#else
-    const wchar_t name[] = L"OLE control";
-#endif
     DrawTextW(dc->m_hDC, name, -1, &const_cast<CRect&>(bounds), DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 }
 
