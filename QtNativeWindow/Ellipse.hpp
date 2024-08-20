@@ -15,12 +15,11 @@ RGBQUAD RGBAPremult(BYTE r, BYTE g, BYTE b, BYTE a) {
 
 /** Check if a coordinate is inside an ellipse. */
 static bool IsInsideEllipse(CPoint pt, CRect ellipse) {
-    CPoint ext{ (ellipse.right - ellipse.left) / 2, (ellipse.bottom - ellipse.top) / 2 }; // ellipse extends
-
+    CPoint ext{ ellipse.Width()/2, ellipse.Height()/2}; // ellipse extends
     CPoint rel = pt - ellipse.CenterPoint(); // point relative to center
 
     // ellipse formula
-    return (rel.x * rel.x) * 1.0f / (ext.x * ext.x) + (rel.y * rel.y) * 1.0f / (ext.y * ext.y) <= 1.0f;
+    return (rel.x * rel.x)*1.0f/(ext.x * ext.x) + (rel.y * rel.y)*1.0f/(ext.y * ext.y) <= 1.0f;
 }
 
 /** Draw semi-transparent ellipse. */
