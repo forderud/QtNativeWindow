@@ -27,7 +27,7 @@ static bool IsInsideEllipse(POINT pt, RECT ellipse) {
 /** Draw semi-transparent ellipse. */
 class EllipseBmp {
 public:
-    EllipseBmp(HDC hdc, RECT rect) : m_hdcParent(hdc), m_width(rect.right - rect.left), m_height(rect.bottom - rect.top) {
+    EllipseBmp(HDC hdc, int width, int height) : m_hdcParent(hdc), m_width(width), m_height(height) {
         m_hdcBmp = CreateCompatibleDC(hdc);
         CreateBitmap();
     }

@@ -41,7 +41,7 @@ private:
         HDC hdc = BeginPaint(&ps);
 
         {
-            EllipseBmp ellipse(hdc, ps.rcPaint);
+            EllipseBmp ellipse(hdc, ps.rcPaint.right - ps.rcPaint.left, ps.rcPaint.bottom - ps.rcPaint.top);
             RGBQUAD color = {255, 0, 0, 64}; // semi-transparent blue (BGRA format)
             ellipse.Draw(color);
             ellipse.BlendInto(ps.rcPaint.left, ps.rcPaint.top);
