@@ -3,6 +3,7 @@
   <ItemGroup>
     <ClInclude Include="LayeredWindow.hpp" />
     <ClInclude Include="TransparentWindow.hpp" />
+    <ClInclude Include="Ellipse.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="app.manifest" />
