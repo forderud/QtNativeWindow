@@ -30,7 +30,15 @@ public:
     EllipseBmp(HDC hdc, RECT rect) : m_width(rect.right - rect.left), m_height(rect.bottom - rect.top) {
         m_hdcBmp = CreateCompatibleDC(hdc);
         CreateBitmap();
+    }
 
+    ~EllipseBmp() {
+        SelectObject(m_hdcBmp, m_prevObj);
+        DeleteObject(m_bmpObj);
+        DeleteDC(m_hdcBmp);
+    }
+
+    void Draw(RGBQUAD color) {
         // remove rect left/top offset before passing it to DrawEllipse
         RECT nonOffsetRect{};
         nonOffsetRect.left = 0;
@@ -38,13 +46,7 @@ public:
         nonOffsetRect.right = m_width;
         nonOffsetRect.bottom = m_height;
 
-        DrawEllipse(nonOffsetRect, RGBAPremult(0, 0, 255, 64)); // semi-transparent blue
-    }
-
-    ~EllipseBmp() {
-        SelectObject(m_hdcBmp, m_prevObj);
-        DeleteObject(m_bmpObj);
-        DeleteDC(m_hdcBmp);
+        DrawEllipse(nonOffsetRect, RGBAPremult(color.rgbRed, color.rgbGreen, color.rgbBlue, color.rgbReserved));
     }
 
     void BlendInto(HDC hdc, RECT rect) {
