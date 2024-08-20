@@ -4,6 +4,7 @@
 #include "MfcOleControl_h.h"
 #include "MfcAppCtrl.h"
 #include "afxdialogex.h"
+#include "../QtNativeWindow/Ellipse.hpp"
 
 
 IMPLEMENT_DYNCREATE(CMfcAppCtrl, COleControl)
@@ -93,8 +94,12 @@ void CMfcAppCtrl::OnDraw(CDC* dc, const CRect& bounds, const CRect& /*invalid*/)
     if (!dc)
         return;
 
-    // draw filled ellipse
-    dc->Ellipse(bounds);
+    // draw semi-transparent ellipse
+    {
+        EllipseBmp ellipse(dc->m_hDC, bounds.Width(), bounds.Height());
+        RGBQUAD color = { 255, 0, 0, 64 }; // semi-transparent blue (BGRA format)
+        ellipse.Draw(color, bounds.left, bounds.top);
+    }
 
     // draw app name
 #ifdef TRANSPARENT_OLE_CONTROL
