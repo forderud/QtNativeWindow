@@ -83,7 +83,12 @@ private:
             // work-around for UI not being shown initially if doing this from WM_CREATE
             BOOL ok = ModifyStyleEx(0, WS_EX_LAYERED);
             assert(ok);
+            
+#if 1
             ok = SetLayeredWindowAttributes(m_hWnd, s_background, 0, LWA_COLORKEY);
+#else
+            ok = UpdateLayeredWindow(m_hWnd, GetDC(), NULL, NULL, NULL, NULL, s_background, NULL, ULW_COLORKEY); // TODO: Make this work
+#endif
             assert(ok);
         }
 #endif
