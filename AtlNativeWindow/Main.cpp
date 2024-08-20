@@ -62,6 +62,7 @@ int main(int argc, char* argv[]) {
 
     ParentWindow mainWin;
     mainWin.Create(nullptr, 0, 0, WS_OVERLAPPEDWINDOW);
+    mainWin.ResizeClient(600, 300);
 
     CAxWindow ole;
     {
