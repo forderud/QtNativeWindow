@@ -32,6 +32,7 @@ public:
 
 private:
     BEGIN_MSG_MAP(LayeredWindow)
+        //MESSAGE_HANDLER(WM_NCCREATE, OnNCreate) // sent prior to WM_CREATE
         MESSAGE_HANDLER(WM_CREATE, OnCreate)
         MESSAGE_HANDLER(WM_PAINT, OnPaint)
         MESSAGE_HANDLER(WM_ERASEBKGND, OnEraseBackground)
