@@ -43,8 +43,7 @@ private:
             CRect rect(ps.rcPaint);
             EllipseBmp ellipse(hdc, rect.Width(), rect.Height());
             RGBQUAD color = {255, 0, 0, 64}; // semi-transparent blue (BGRA format)
-            ellipse.Draw(color);
-            ellipse.BlendInto(rect.left, rect.top);
+            ellipse.Draw(color, rect.left, rect.top);
         }
 
         // annotate with window style

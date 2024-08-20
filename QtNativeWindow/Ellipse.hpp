@@ -37,7 +37,7 @@ public:
         DeleteDC(m_hdcBmp);
     }
 
-    void Draw(RGBQUAD color) {
+    void Draw(RGBQUAD color, int xOrigin, int yOrigin) {
         // remove rect left/top offset before passing it to DrawEllipse
         RECT nonOffsetRect{};
         nonOffsetRect.left = 0;
@@ -46,18 +46,7 @@ public:
         nonOffsetRect.bottom = m_height;
 
         DrawEllipse(nonOffsetRect, RGBAPremult(color.rgbRed, color.rgbGreen, color.rgbBlue, color.rgbReserved));
-    }
-
-    void BlendInto(int xOrigin, int yOrigin) {
-        BLENDFUNCTION blend = {};
-        blend.BlendOp = AC_SRC_OVER;
-        blend.BlendFlags = 0;
-        blend.SourceConstantAlpha = 0xFF;
-        blend.AlphaFormat = AC_SRC_ALPHA; // per-pixel alpha
-
-        // copy bitmat to window buffer with per-pixel alpha blending
-        BOOL ok = GdiAlphaBlend(m_hdcParent, xOrigin, yOrigin, m_width, m_height, m_hdcBmp, 0, 0, m_width, m_height, blend);
-        assert(ok);
+        BlendInto(xOrigin, yOrigin);
     }
 
 private:
@@ -86,6 +75,18 @@ private:
                     m_pixels[x + y * m_width] = color;
             }
         }
+    }
+
+    void BlendInto(int xOrigin, int yOrigin) {
+        BLENDFUNCTION blend = {};
+        blend.BlendOp = AC_SRC_OVER;
+        blend.BlendFlags = 0;
+        blend.SourceConstantAlpha = 0xFF;
+        blend.AlphaFormat = AC_SRC_ALPHA; // per-pixel alpha
+
+        // copy bitmat to window buffer with per-pixel alpha blending
+        BOOL ok = GdiAlphaBlend(m_hdcParent, xOrigin, yOrigin, m_width, m_height, m_hdcBmp, 0, 0, m_width, m_height, blend);
+        assert(ok);
     }
 
     const HDC m_hdcParent = nullptr;
