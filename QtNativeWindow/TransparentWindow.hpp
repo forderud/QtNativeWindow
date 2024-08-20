@@ -41,55 +41,8 @@ private:
         HDC hdc = BeginPaint(&ps);
 
         {
-            HDC hdcBmp = CreateCompatibleDC(hdc);
-            int width = ps.rcPaint.right - ps.rcPaint.left;
-            int height = ps.rcPaint.bottom - ps.rcPaint.top;
-
-            HBITMAP bmpObj = nullptr;
-            HGDIOBJ prevObj = nullptr; // previous hdcBmp object (before bmpObj)
-            {
-                BITMAPINFO bmi = {};
-                bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-                bmi.bmiHeader.biWidth = width;
-                bmi.bmiHeader.biHeight = height;
-                bmi.bmiHeader.biPlanes = 1;
-                bmi.bmiHeader.biBitCount = 32;
-                bmi.bmiHeader.biCompression = BI_RGB;
-                bmi.bmiHeader.biSizeImage = width * height * 4;
-
-                // create offscreen bitmap with premultiplied alpha channel
-                RGBQUAD* pixels = nullptr; // pixel buffer in 0xAARRGGBB format
-                bmpObj = CreateDIBSection(hdcBmp, &bmi, DIB_RGB_COLORS, (void**)&pixels, NULL, 0);
-                prevObj = SelectObject(hdcBmp, bmpObj);
-
-                // draw filled ellipse into bitmap
-                // cannot use GDI Ellipse function here since it sets alpha=0 (see https://devblogs.microsoft.com/oldnewthing/20210915-00/?p=105687)
-                RGBQUAD color = RGBAPremult(0, 0, 255, 64); // semi-transparent blue
-                for (int y = 0; y < height; y++) {
-                    for (int x = 0; x < width; x++) {
-                        POINT pt = { x + ps.rcPaint.left, y + ps.rcPaint.top}; // add x&y offset back so that pt matches ps.rcPaint
-                        if (IsInsideEllipse({ x, y }, ps.rcPaint))
-                            pixels[x + y*width] = color;
-                    }
-                }
-            }
-
-            {
-                BLENDFUNCTION blend = {};
-                blend.BlendOp = AC_SRC_OVER;
-                blend.BlendFlags = 0;
-                blend.SourceConstantAlpha = 0xFF;
-                blend.AlphaFormat = AC_SRC_ALPHA; // per-pixel alpha
-
-                // copy bitmat to window buffer with per-pixel alpha blending
-                BOOL ok = GdiAlphaBlend(hdc, ps.rcPaint.left, ps.rcPaint.top, width, height, hdcBmp, 0, 0, width, height, blend);
-                assert(ok);
-            }
-
-            // clean up
-            SelectObject(hdcBmp, prevObj);
-            DeleteObject(bmpObj);
-            DeleteDC(hdcBmp);
+            EllipseBmp ellipse(hdc, ps.rcPaint);
+            ellipse.BlendInto(hdc, ps.rcPaint);
         }
 
         // annotate with window style

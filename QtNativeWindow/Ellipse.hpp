@@ -23,3 +23,66 @@ static bool IsInsideEllipse(POINT pt, RECT ellipse) {
     // ellipse formula
     return (rel.x * rel.x) * 1.0f / (ext.x * ext.x) + (rel.y * rel.y) * 1.0f / (ext.y * ext.y) <= 1.0f;
 }
+
+/** Draw semi-transparent ellipse. */
+class EllipseBmp {
+public:
+    EllipseBmp(HDC hdc, RECT rect) : m_width(rect.right - rect.left), m_height(rect.bottom - rect.top) {
+        m_hdcBmp = CreateCompatibleDC(hdc);
+        CreateBitmap();
+        DrawEllipse(rect, RGBAPremult(0, 0, 255, 64)); // semi-transparent blue
+    }
+
+    ~EllipseBmp() {
+        SelectObject(m_hdcBmp, m_prevObj);
+        DeleteObject(m_bmpObj);
+        DeleteDC(m_hdcBmp);
+    }
+
+    void BlendInto(HDC hdc, RECT rect) {
+        BLENDFUNCTION blend = {};
+        blend.BlendOp = AC_SRC_OVER;
+        blend.BlendFlags = 0;
+        blend.SourceConstantAlpha = 0xFF;
+        blend.AlphaFormat = AC_SRC_ALPHA; // per-pixel alpha
+
+        // copy bitmat to window buffer with per-pixel alpha blending
+        BOOL ok = GdiAlphaBlend(hdc, rect.left, rect.top, m_width, m_height, m_hdcBmp, 0, 0, m_width, m_height, blend);
+        assert(ok);
+    }
+
+private:
+    void CreateBitmap() {
+        BITMAPINFO bmi = {};
+        bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+        bmi.bmiHeader.biWidth = m_width;
+        bmi.bmiHeader.biHeight = m_height;
+        bmi.bmiHeader.biPlanes = 1;
+        bmi.bmiHeader.biBitCount = 32;
+        bmi.bmiHeader.biCompression = BI_RGB;
+        bmi.bmiHeader.biSizeImage = m_width * m_height * 4;
+
+        // create offscreen bitmap with premultiplied alpha channel
+        m_bmpObj = CreateDIBSection(m_hdcBmp, &bmi, DIB_RGB_COLORS, (void**)&m_pixels, NULL, 0);
+        m_prevObj = SelectObject(m_hdcBmp, m_bmpObj);
+    }
+
+    void DrawEllipse(RECT rect, RGBQUAD color) {
+        // draw filled ellipse into bitmap
+        // cannot use GDI Ellipse function here since it sets alpha=0 (see https://devblogs.microsoft.com/oldnewthing/20210915-00/?p=105687)
+        for (int y = 0; y < m_height; y++) {
+            for (int x = 0; x < m_width; x++) {
+                POINT pt = { x + rect.left, y + rect.top }; // add x&y offset back so that pt matches rect
+                if (IsInsideEllipse({ x, y }, rect))
+                    m_pixels[x + y * m_width] = color;
+            }
+        }
+    }
+
+    const int m_width = 0;
+    const int m_height = 0;
+    HDC m_hdcBmp = nullptr;
+    HBITMAP m_bmpObj = nullptr;
+    HGDIOBJ m_prevObj = nullptr; // previous hdcBmp object (before bmpObj)
+    RGBQUAD* m_pixels = nullptr; // pixel buffer in 0xAARRGGBB format
+};
