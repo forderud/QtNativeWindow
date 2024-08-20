@@ -5,6 +5,8 @@
 #include <cassert>
 
 
+#define LAYERED_STYLE_WORK_ARUND
+
 /** Window that draws an ellipse on transparent background.
     Uses WS_EX_LAYERED to achieve a transparent background through a magic RGB value.
     Custom hit testing is not required, since Windows already knows which pixels are transparent.
@@ -18,18 +20,37 @@ public:
     ~LayeredWindow() override {
     }
 
+#ifndef LAYERED_STYLE_WORK_ARUND
+    static DWORD GetWndExStyle(DWORD dwExStyle) {
+        return dwExStyle | WS_EX_LAYERED;
+    }
+#endif
+
     static const wchar_t* GetWndCaption() {
         return L"LayeredWindow";
     }
 
 private:
     BEGIN_MSG_MAP(LayeredWindow)
+        MESSAGE_HANDLER(WM_CREATE, OnCreate)
         MESSAGE_HANDLER(WM_PAINT, OnPaint)
         MESSAGE_HANDLER(WM_ERASEBKGND, OnEraseBackground)
         MESSAGE_HANDLER(WM_LBUTTONDOWN, OnLButtonDown)
     END_MSG_MAP()
 
     // Message Handlers
+    LRESULT OnCreate(UINT nMsg, WPARAM wparam, LPARAM lparam, BOOL& handled) {
+#ifndef LAYERED_STYLE_WORK_ARUND
+        // configure transparent background
+        // WARNING: Doesn't work
+        assert(GetExStyle() & WS_EX_LAYERED);
+        BOOL ok = SetLayeredWindowAttributes(m_hWnd, s_background, 0, LWA_COLORKEY);
+        assert(ok);
+#endif
+
+        return 0;
+    }
+
     LRESULT OnPaint(UINT nMsg, WPARAM wparam, LPARAM lparam, BOOL& handled) {
         PAINTSTRUCT ps = {};
         HDC hdc = BeginPaint(&ps);
@@ -53,6 +74,7 @@ private:
     }
 
     LRESULT OnEraseBackground(UINT nMsg, WPARAM wparam, LPARAM lparam, BOOL& handled) {
+#ifdef LAYERED_STYLE_WORK_ARUND
         if (!m_initialized) {
             m_initialized = true;
 
@@ -63,6 +85,7 @@ private:
             ok = SetLayeredWindowAttributes(m_hWnd, s_background, 0, LWA_COLORKEY);
             assert(ok);
         }
+#endif
 
         CRect area;
         GetClientRect(&area);
@@ -82,6 +105,8 @@ private:
         return 0;
     }
 
+#ifdef LAYERED_STYLE_WORK_ARUND
     bool                  m_initialized = false;
+#endif
     static const COLORREF s_background = RGB(1, 1, 1); // magic background color that's treated as transparent
 };
