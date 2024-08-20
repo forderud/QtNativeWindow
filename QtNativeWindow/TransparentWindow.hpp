@@ -2,7 +2,6 @@
 #include <atlbase.h>
 #include <atlwin.h>
 #include <atltypes.h>
-#include <cassert>
 #include "Ellipse.hpp"
 
 

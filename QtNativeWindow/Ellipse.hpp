@@ -1,4 +1,5 @@
 #pragma once
+#include <cassert>
 /* Ellipse drawing support functions. */
 
 
