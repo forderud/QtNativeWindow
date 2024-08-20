@@ -7,7 +7,8 @@
 
 /** Window that draws an ellipse on transparent background.
     Uses WS_EX_LAYERED to achieve a transparent background through a magic RGB value.
-    Custom hit testing is not required, since Windows already knows which pixels are transparent. */
+    Custom hit testing is not required, since Windows already knows which pixels are transparent.
+    NOTE: WS_EX_LAYERED is only supported for child windows on Win8 and newer, so a MANIFEST FILE IS REQURED to enable the feature. */
 class LayeredWindow : public CWindowImpl<LayeredWindow> {
 public:
     LayeredWindow(HWND parent) {
@@ -56,7 +57,7 @@ private:
             m_initialized = true;
 
             // configure transparent background
-            // work-around for UI not being shown initially if doing this from WM_CREATE 
+            // work-around for UI not being shown initially if doing this from WM_CREATE
             BOOL ok = ModifyStyleEx(0, WS_EX_LAYERED);
             assert(ok);
             ok = SetLayeredWindowAttributes(m_hWnd, s_background, 0, LWA_COLORKEY);
