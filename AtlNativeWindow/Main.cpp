@@ -39,8 +39,8 @@ private:
         SelectObject(hdc, GetStockObject(DC_PEN)); // enable pen color change
         SetDCPenColor(hdc, RGB(63, 63, 63)); // dark gray outline
 
-        // draw filled ellipse
-        Ellipse(hdc, ps.rcPaint.left, ps.rcPaint.top, ps.rcPaint.right, ps.rcPaint.bottom);
+        // draw slightly shrunk ellipse
+        Ellipse(hdc, ps.rcPaint.left + 20, ps.rcPaint.top + 20, ps.rcPaint.right - 20, ps.rcPaint.bottom - 20);
 
         // annotate with window style
         DrawTextW(hdc, L"Opaque parent", -1, &ps.rcPaint, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
