@@ -30,7 +30,15 @@ public:
     EllipseBmp(HDC hdc, RECT rect) : m_width(rect.right - rect.left), m_height(rect.bottom - rect.top) {
         m_hdcBmp = CreateCompatibleDC(hdc);
         CreateBitmap();
-        DrawEllipse(rect, RGBAPremult(0, 0, 255, 64)); // semi-transparent blue
+
+        // remove rect left/top offset before passing it to DrawEllipse
+        RECT nonOffsetRect{};
+        nonOffsetRect.left = 0;
+        nonOffsetRect.top = 0;
+        nonOffsetRect.right = m_width;
+        nonOffsetRect.bottom = m_height;
+
+        DrawEllipse(nonOffsetRect, RGBAPremult(0, 0, 255, 64)); // semi-transparent blue
     }
 
     ~EllipseBmp() {
@@ -72,7 +80,7 @@ private:
         // cannot use GDI Ellipse function here since it sets alpha=0 (see https://devblogs.microsoft.com/oldnewthing/20210915-00/?p=105687)
         for (int y = 0; y < m_height; y++) {
             for (int x = 0; x < m_width; x++) {
-                POINT pt = { x + rect.left, y + rect.top }; // add x&y offset back so that pt matches rect
+                POINT pt = { x, y };
                 if (IsInsideEllipse({ x, y }, rect))
                     m_pixels[x + y * m_width] = color;
             }
