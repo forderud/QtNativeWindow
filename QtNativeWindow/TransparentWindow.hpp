@@ -44,7 +44,7 @@ private:
             EllipseBmp ellipse(hdc, ps.rcPaint);
             RGBQUAD color = {255, 0, 0, 64}; // semi-transparent blue (BGRA format)
             ellipse.Draw(color);
-            ellipse.BlendInto(hdc, ps.rcPaint);
+            ellipse.BlendInto(ps.rcPaint.left, ps.rcPaint.top);
         }
 
         // annotate with window style

@@ -27,7 +27,7 @@ static bool IsInsideEllipse(POINT pt, RECT ellipse) {
 /** Draw semi-transparent ellipse. */
 class EllipseBmp {
 public:
-    EllipseBmp(HDC hdc, RECT rect) : m_width(rect.right - rect.left), m_height(rect.bottom - rect.top) {
+    EllipseBmp(HDC hdc, RECT rect) : m_hdcParent(hdc), m_width(rect.right - rect.left), m_height(rect.bottom - rect.top) {
         m_hdcBmp = CreateCompatibleDC(hdc);
         CreateBitmap();
     }
@@ -49,7 +49,7 @@ public:
         DrawEllipse(nonOffsetRect, RGBAPremult(color.rgbRed, color.rgbGreen, color.rgbBlue, color.rgbReserved));
     }
 
-    void BlendInto(HDC hdc, RECT rect) {
+    void BlendInto(int xOrigin, int yOrigin) {
         BLENDFUNCTION blend = {};
         blend.BlendOp = AC_SRC_OVER;
         blend.BlendFlags = 0;
@@ -57,7 +57,7 @@ public:
         blend.AlphaFormat = AC_SRC_ALPHA; // per-pixel alpha
 
         // copy bitmat to window buffer with per-pixel alpha blending
-        BOOL ok = GdiAlphaBlend(hdc, rect.left, rect.top, m_width, m_height, m_hdcBmp, 0, 0, m_width, m_height, blend);
+        BOOL ok = GdiAlphaBlend(m_hdcParent, xOrigin, yOrigin, m_width, m_height, m_hdcBmp, 0, 0, m_width, m_height, blend);
         assert(ok);
     }
 
@@ -89,6 +89,7 @@ private:
         }
     }
 
+    const HDC m_hdcParent = nullptr;
     const int m_width = 0;
     const int m_height = 0;
     HDC m_hdcBmp = nullptr;
