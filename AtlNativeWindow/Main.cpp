@@ -63,15 +63,9 @@ int main(int argc, char* argv[]) {
     ParentWindow mainWin;
     mainWin.Create(nullptr, 0, 0, WS_OVERLAPPEDWINDOW);
 
-    TransparentWindow tw(mainWin);
-    tw.MoveWindow(10, 10, 400, 400);
-
-    LayeredWindow lw(mainWin);
-    lw.MoveWindow(420, 10, 400, 400);
-
     CAxWindow ole;
     {
-        RECT olePos = { 840, 10, 1200, 410 };
+        RECT olePos = { 10, 10, 200, 210 };
         ole.Create(mainWin, olePos, nullptr, WS_CHILD | WS_VISIBLE);
         ole.SetWindowTextW(L"OLE host"); // set window name _after_ construction to avoid "Invalid class string" (0x800401f3 ) error from CreateWindowEx
         GUID clsid{};
@@ -82,6 +76,12 @@ int main(int argc, char* argv[]) {
             abort();
         ole.AttachControl(ctrl.p, /*out container IUnknown*/nullptr);
     }
+
+    TransparentWindow tw(mainWin);
+    tw.MoveWindow(210, 10, 190, 200);
+
+    LayeredWindow lw(mainWin);
+    lw.MoveWindow(410, 10, 190, 200);
 
     mainWin.ShowWindow(SW_NORMAL);
 
