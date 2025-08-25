@@ -16,9 +16,9 @@ Stop defining `AVOID_FLICKERING_WITH_COMPOSITED_WINDOW` to reproduce this issue.
 
 ### Qt OLE control transparency problem
 
-[QAxWidget](https://doc.qt.io/qt-6/qaxwidget.html) doesn't seem to handle OLE controls with transparent background properly. This leads to drawing artifacts where the background is not cleared.
+[QTBUG-132671](https://bugreports.qt.io/browse/QTBUG-132671): How to create a semi-transparent ActiveQt window?
 
-This problem have not yet been submitted to the Qt company.
+[QAxWidget](https://doc.qt.io/qt-6/qaxwidget.html) doesn't seem to handle OLE controls with transparent background properly. This leads to drawing artifacts where the background is not cleared.
 
 ## Prerequisites
 * [Visual Studio 2022](https://visualstudio.microsoft.com/)
