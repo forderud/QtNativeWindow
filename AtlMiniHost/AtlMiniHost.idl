@@ -1,0 +1,22 @@
+import "oaidl.idl";
+import "AppAPI.idl";
+
+[
+    version(1.0),
+    uuid(6DD3518F-3716-43F8-ACAC-F42F7E033989),
+    helpstring("AtlMiniHost module")
+]
+library AtlMiniHost
+{
+    importlib("stdole2.tlb");
+
+    // explicitly include AppAPI interfaces in type lib
+    // required to enable out-of-process interface marshaling
+    interface IPluginApp;
+    interface IPluginAppImage;
+
+    interface IPluginHostBasic;
+    interface IPluginLogger;
+    interface IUserControls;
+    interface IHostMessage;
+};
