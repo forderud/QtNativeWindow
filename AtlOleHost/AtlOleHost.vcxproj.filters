@@ -16,9 +16,6 @@
     <ResourceCompile Include="AtlOleHost.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Midl Include="AtlOleHost.idl" />
   </ItemGroup>
   <ItemGroup>
