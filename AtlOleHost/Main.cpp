@@ -4,23 +4,6 @@
 #include <atlstr.h>
 #include "resource.h"
 #include "CMainWindow.h"
-#include <AppAPI/PluginQuery.hpp>
-
-
-static std::vector<appapi::PluginAppControl> FilterCompatibleApps(std::vector<appapi::PluginAppControl> list, bool include_hidden) {
-    std::vector<appapi::PluginAppControl> result;
-    for (const auto & app : list) {
-        if ((app.version_major != APPAPI_VERSION_MAJOR) || (app.version_minor != APPAPI_VERSION_MINOR))
-            continue; // filter out incompatible apps
-
-        if (!include_hidden && app.caps.hidden)
-            continue; // filter out hidden apps
-
-        result.push_back(app);
-    }
-
-    return result;
-}
 
 
 class AtlOleHostModule : public CAtlExeModuleT<AtlOleHostModule> {
@@ -47,13 +30,8 @@ int WINAPI wmain(int argc, wchar_t * argv[]) {
                 return -1;
         }
     } else {
-        // search for installed apps
-        std::vector<appapi::PluginAppControl> installed_apps = FilterCompatibleApps(appapi::GetPluginAppControlList(false), false);
-
         // TODO: Replace hardcoded app selection with selection UI
-        std::wstring clsid_str = installed_apps.back().clsid;
-        clsid_str = L"{68B8E4BF-39BA-4C2B-B95A-DBAEF60C399A}"; // MfcSimpleViewer
-
+        std::wstring clsid_str = L"{45C33494-127D-4AEA-B7EB-63A203D69E8A}"; // MfcOleControl
         HRESULT hr = CLSIDFromString(clsid_str.c_str(), &clsid);
         if (FAILED(hr))
             return -1;

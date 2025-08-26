@@ -8,6 +8,12 @@
 #define USE_ALTERNATIVE_HOSTWINDOW
 #endif
 
+inline void CHECK(HRESULT hr) {
+    if (FAILED(hr))
+        throw std::runtime_error("COM error");
+}
+
+
 class CMainWindow : public CWindowImpl<CMainWindow, CWindow, CFrameWinTraits> {
 public:
     CMainWindow();

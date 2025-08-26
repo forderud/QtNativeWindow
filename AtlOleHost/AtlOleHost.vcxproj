@@ -89,7 +89,6 @@
     <ClInclude Include="CCustomAxHostWindow.h" />
     <ClInclude Include="CMainWindow.h" />
     <ClInclude Include="LayeredWindow.hpp" />
-    <ClInclude Include="PluginHostBasic.hpp" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="TransparentWindow.hpp" />
   </ItemGroup>

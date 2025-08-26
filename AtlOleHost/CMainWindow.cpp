@@ -1,7 +1,5 @@
 #include "CMainWindow.h"
-#include "PluginHostBasic.hpp"
-#include <AppAPI/AppAPI.h>
-#include "../../host/AppSandbox/PluginAppNonImage.hpp"
+
 
 CMainWindow::CMainWindow() {
 }
@@ -45,21 +43,6 @@ LRESULT CMainWindow::OnCreate(UINT nMsg, WPARAM wparam, LPARAM lparam, BOOL &han
     if (FAILED(hr))
         abort();
 
-    CComPtr<IPluginAppImage> app;
-    app = m_control; // check for IPluginAppImage interface first
-    if (!app) {
-        // fallback to IPluginApp interface
-        CComPtr<IPluginApp> tmp;
-        tmp = m_control;
-        assert(tmp);
-
-        // wrap IPluginApp ptr to make it appear like a IPluginAppImage
-        auto wrapper = CreateLocalInstance<PluginAppNonImage>();
-        wrapper->Initialize(tmp);
-        app = wrapper;
-    }
-    assert(app);
-
     // create OLE child window & attach control
 #ifdef USE_ALTERNATIVE_HOSTWINDOW
     CComObject<CCustomAxHostWindow> * tmp = nullptr;
@@ -74,22 +57,6 @@ LRESULT CMainWindow::OnCreate(UINT nMsg, WPARAM wparam, LPARAM lparam, BOOL &han
     m_ole_window.SetWindowTextW(L"OLE control"); // set window name _after_ construction to avoid "Invalid class string" (0x800401f3 ) error from CreateWindowEx
     m_ole_window.AttachControl(m_control.p, /*out container IUnknown*/nullptr);
 #endif
-
-    // initialize OLE control that implement AppAPI
-    auto host = CreateLocalInstance<PluginHostBasic>();
-    host->Initialize([=](DisplayMode mode) {
-        // process resize request from app
-        if (mode == DISPLAY_LARGE)
-            MoveWindow(100, 100, 800, 600, TRUE); // resize to 800x600 resolution
-        else if (mode == DISPLAY_SMALL)
-            MoveWindow(100, 100, 300, 400, TRUE); // resize to 300x400 resolution
-
-        app->OnDisplayModeChanged(mode, 0);
-    });
-
-    hr = app->Initialize(STARTUP_NORMAL, {}, nullptr, host, nullptr);
-    if (FAILED(hr))
-        abort();
 
     // create sibling child window for focus testing
     m_trans_window.Create(m_hWnd, _U_RECT(GetChildRect(Child::Transparent)), L"Transparent window");
