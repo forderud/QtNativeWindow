@@ -10,7 +10,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QtNativeWindow", "QtNativeW
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MfcOleControl", "MfcOleControl\MfcOleControl.vcxproj", "{D4C2EDF4-C864-447E-BC61-E4F65892FA11}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AtlNativeWindow", "AtlNativeWindow\AtlNativeWindow.vcxproj", "{D3BBAC37-5633-4D48-A290-82044A090E43}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AtlNativeHost", "AtlNativeHost\AtlNativeHost.vcxproj", "{D3BBAC37-5633-4D48-A290-82044A090E43}"
 	ProjectSection(ProjectDependencies) = postProject
 		{D4C2EDF4-C864-447E-BC61-E4F65892FA11} = {D4C2EDF4-C864-447E-BC61-E4F65892FA11}
 	EndProjectSection
