@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by AtlMiniHost.rc
+// Used by AtlOleHost.rc
 //
 #define IDS_APP_TITLE                   103
 #define IDM_EXIT                        105

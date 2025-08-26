@@ -98,13 +98,13 @@
     <ClCompile Include="CMainWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="AtlMiniHost.rc" />
+    <ResourceCompile Include="AtlOleHost.rc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="AtlMiniHost.idl" />
+    <Midl Include="AtlOleHost.idl" />
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="app.manifest" />

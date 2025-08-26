@@ -26,7 +26,7 @@ public:
         if (!family_name || !model_name)
             return E_INVALIDARG;
 
-        *family_name = CComBSTR(L"AtlMiniHost").Detach();
+        *family_name = CComBSTR(L"AtlOleHost").Detach();
         *model_name = CComBSTR(L"E99").Detach();
 
         host_version[0] = 0; // major

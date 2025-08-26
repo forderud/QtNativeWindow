@@ -1,4 +1,4 @@
-# AtlMiniHost - ATL-based host window for OLE controls
+# AtlOleHost - ATL-based host window for OLE controls
 
 Enables testing of:
 - Qt ActiveX control examples in ATL container and reproducing bugs in Qt or ATL.

@@ -23,7 +23,7 @@ static std::vector<appapi::PluginAppControl> FilterCompatibleApps(std::vector<ap
 }
 
 
-class AtlMiniHostModule : public CAtlExeModuleT<AtlMiniHostModule> {
+class AtlOleHostModule : public CAtlExeModuleT<AtlOleHostModule> {
 public:
     HRESULT PreMessageLoop(int showCmd);
     HRESULT PostMessageLoop();
@@ -31,7 +31,7 @@ public:
     CMainWindow m_mainwindow;
 };
 
-AtlMiniHostModule _AtlModule;
+AtlOleHostModule _AtlModule;
 
 
 // Starts up via AtlExeModule
@@ -62,7 +62,7 @@ int WINAPI wmain(int argc, wchar_t * argv[]) {
     _AtlModule.m_mainwindow.m_ole_clsid = clsid;
 
     // Register TypeLib for out-of-process marshaling of AppAPI interfaces. Only need to be done once.
-    // assumes AtlMiniHost.tlb in same folder as this EXE 
+    // assumes AtlOleHost.tlb in same folder as this EXE 
     HRESULT hr = _AtlModule.RegisterServer(TRUE);
     if (FAILED(hr)) {
         std::wcout << L"TypeLib registration error (must run as admin)." << std::endl;
@@ -73,7 +73,7 @@ int WINAPI wmain(int argc, wchar_t * argv[]) {
     return retval;
 }
 
-HRESULT AtlMiniHostModule::PreMessageLoop(int showCmd) {
+HRESULT AtlOleHostModule::PreMessageLoop(int showCmd) {
     CString app_title;
     if (!app_title.LoadStringW(IDS_APP_TITLE))
         return E_FAIL;
@@ -91,6 +91,6 @@ HRESULT AtlMiniHostModule::PreMessageLoop(int showCmd) {
     return S_OK;
 }
 
-HRESULT AtlMiniHostModule::PostMessageLoop() {
+HRESULT AtlOleHostModule::PostMessageLoop() {
     return S_OK;
 }

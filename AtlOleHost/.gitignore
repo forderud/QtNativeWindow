@@ -1,0 +1,4 @@
+*.user
+x64/
+/AtlOleHost_h.h
+/AtlOleHost_i.c

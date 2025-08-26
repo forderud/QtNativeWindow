@@ -7,7 +7,7 @@ setlocal enableextensions
 cd /d "%~dp0"
 
 
-:: Remove all traces of AtlMiniHost from registry
+:: Remove all traces of AtlOleHost from registry
 reg delete "HKCR\TypeLib\{6DD3518F-3716-43F8-ACAC-F42F7E033989}" /f 2> NUL
 
 
