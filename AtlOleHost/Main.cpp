@@ -39,14 +39,6 @@ int WINAPI wmain(int argc, wchar_t * argv[]) {
 
     _AtlModule.m_mainwindow.m_ole_clsid = clsid;
 
-    // Register TypeLib for out-of-process marshaling of AppAPI interfaces. Only need to be done once.
-    // assumes AtlOleHost.tlb in same folder as this EXE 
-    HRESULT hr = _AtlModule.RegisterServer(TRUE);
-    if (FAILED(hr)) {
-        std::wcout << L"TypeLib registration error (must run as admin)." << std::endl;
-        return -2;
-    }
-
     int retval = _AtlModule.WinMain(SW_SHOWDEFAULT);
     return retval;
 }

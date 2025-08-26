@@ -100,9 +100,6 @@
     <ResourceCompile Include="AtlOleHost.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="AtlOleHost.idl" />
-  </ItemGroup>
-  <ItemGroup>
     <Manifest Include="app.manifest" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
